@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+
+# IntelliJ project files (this repo is a Gradle project; IDE config is per-developer)
+.idea/
+*.iml
+
+# IDE Starter working data: downloaded IDE builds, per-run system/config dirs, logs.
+# Large and machine-specific. Curated copies of logs/screenshots are committed under results/.
+out/
+system/
+
+# Raw Allure output written by ide-starter-junit5 on every run (includes screenshots).
+# Regenerated each time; curated copies go under results/ instead.
+allure-results/
+
+# Local-only helper that works around a fault specific to one developer machine
+# (AF_UNIX sockets are unusable under %USERPROFILE%\AppData there). The project needs
+# no such workaround on a healthy Windows box, so this must not ship with the repo.
+run-tests.ps1
+
+# Working notes and captured UI dumps -- kept locally for reference, not part of the deliverable.
+# The *Explorer classes regenerate the UI dumps on demand.
+docs/

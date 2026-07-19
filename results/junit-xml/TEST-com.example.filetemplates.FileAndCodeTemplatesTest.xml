@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.filetemplates.FileAndCodeTemplatesTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-07-18T12:05:01.538Z" hostname="DESKTOP-VIKFIOL" time="91.687">
+  <properties/>
+  <testcase name="revertRestoresBuiltInTemplate()" classname="com.example.filetemplates.FileAndCodeTemplatesTest" time="27.142"/>
+  <testcase name="createdTemplateIsSavedAndListed()" classname="com.example.filetemplates.FileAndCodeTemplatesTest" time="17.653"/>
+  <testcase name="newFileFromTemplateUsesTemplateBody()" classname="com.example.filetemplates.FileAndCodeTemplatesTest" time="46.841"/>
+  <system-out><![CDATA[[02:05:01]: Starter DI was initialized
+[02:05:01]: Starter DI was updated by: 
+- com.example.filetemplates.IdeStarterTestBase$Companion.configureOnce(IdeStarterTestBase.kt:66)
+- com.example.filetemplates.IdeStarterTestBase$Companion.access$configureOnce(IdeStarterTestBase.kt:33)
+- com.example.filetemplates.IdeStarterTestBase.<init>(IdeStarterTestBase.kt:30)
+[14:05:01]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - New subscriber Subscriber(subscriberName=class com.intellij.ide.starter.runner.TestContainer$Companion$1, timeout=2m, executeOnce=false, sequential=false, callback=(com.intellij.ide.starter.runner.TestContextInitializedEvent) -> kotlin.Unit) for TestContextInitializedEvent
+[02:05:01]: Resolving IDE build for revertRestoresBuiltInTemplate...
+[02:05:01]: Starting external process for `git-repo-root-get`
+  Working directory: null
+  Arguments: [git rev-parse --show-toplevel HEAD]
+  STDOUT will be redirected to: string. STDERR will be redirected to: ignored. STDIN is empty: true
+
+[02:05:01]:   ... started external process `git-repo-root-get` with process ID = 36760
+[02:05:01]:   ... failed external process `git-repo-root-get` with exit code 128
+[02:05:01]: Requesting JetBrains products by URL: https://data.services.jetbrains.com/products/releases?code=IU&type=release
+[02:05:02]: Requesting JetBrains products by URL: https://data.services.jetbrains.com/products/releases?code=IU&type=eap
+[02:05:03]: Requesting JetBrains products by URL: https://data.services.jetbrains.com/products/releases?code=IU&type=preview
+[02:05:03]: Installer file V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\installers\IU\ideaIU-261.26222.65.exe already exists. Skipping download.
+[02:05:03]: Build directory V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65 already exists for the binary V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\installers\IU\ideaIU-261.26222.65.exe
+[02:05:03]: Using IDE paths for 'revertRestoresBuiltInTemplate': IDE Test Paths at V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate
+[02:05:03]: IDE to run for 'revertRestoresBuiltInTemplate': IDE{IU, 261.26222.65, Windows, home=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65}
+[02:05:03]: Cleaning system dir for com.intellij.ide.starter.ide.IDETestContext@5d97caa4 at IDE Test Paths at V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate
+[02:05:03]: Setting IDE system property: [ij.load.shell.env=false]
+[02:05:03]: Setting IDE system property: [ide.instant.shutdown=false]
+[02:05:03]: Setting IDE system property: [feature.usage.event.log.send.on.ide.close=false]
+[02:05:03]: Setting IDE system property: [linux.native.menu.force.disable=true]
+[02:05:03]: Setting IDE system property: [jdk.gtk.verbose=true]
+[02:05:03]: Setting IDE system property: [vcs.log.index.enable=false]
+[02:05:03]: Setting IDE system property: [ide.slow.operations.assertion=false]
+[02:05:03]: Setting IDE system property: [integrationTests.profiler=async]
+[02:05:03]: Setting IDE system property: [idea.config.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\config]
+[02:05:03]: Setting IDE system property: [idea.system.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\system]
+[02:05:03]: Setting IDE system property: [idea.plugins.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\plugins]
+[02:05:03]: Setting IDE system property: [idea.local.statistics.without.report=true]
+[02:05:03]: Setting IDE system property: [idea.updates.url=http://127.0.0.1]
+[02:05:03]: Setting IDE system property: [kotest.assertions.collection.enumerate.size=2147483647]
+[02:05:03]: Setting IDE system property: [ide.enable.notification.trace.data.sharing=false]
+[14:05:03]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [2] PostAndWait start for TestContextInitializedEvent: total=1, sequential=0, parallel=1
+[02:05:03]: Starter configuration storage: {MONITORING_DUMPS_INTERVAL_SECONDS=60, ENABLE_SCRAMBLING_FOR_DEVSERVER=false, INSTALLER_INCLUDE_RUNTIME_MODULE_REPOSITORY=false, AFTER_EACH_MESSAGE_BUS_CLEANUP=false, LOG_ENVIRONMENT_VARIABLES=false, SPLIT_MODE_ENABLED=false, DEBUG_LOGGING_ENABLED=false}
+[14:05:03]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [2] PostAndWait finished for TestContextInitializedEvent. Exceptions: []
+[14:05:04]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - New subscriber Subscriber(subscriberName=com.intellij.ide.starter.driver.engine.DriverWithDetailedLogging@31142d58, timeout=2m, executeOnce=true, sequential=false, callback=(com.intellij.ide.starter.runner.events.IdeLaunchEvent) -> kotlin.Unit) for IdeLaunchEvent
+[14:05:04]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - New subscriber Subscriber(subscriberName=CompletableDeferredImpl{Active}@1b482cbf, timeout=2m, executeOnce=true, sequential=false, callback=(com.intellij.ide.starter.runner.events.IdeLaunchEvent) -> kotlin.Unit) for IdeLaunchEvent
+[02:05:04]: Creating reports dir 'reports'
+[02:05:04]: Creating reports dir 'snapshots'
+[02:05:04]: Reports dir 'revertRestoresBuiltInTemplate' is already created
+[02:05:04]: Creating reports dir 'log'
+[02:05:04]: Starting external process for `exec-java-cmd`
+  Working directory: V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\jbr
+  Arguments: [V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\jbr\bin\java.exe -version]
+  STDOUT will be redirected to: string. STDERR will be redirected to: string. STDIN is empty: true
+
+[02:05:04]:   ... started external process `exec-java-cmd` with process ID = 7728
+[02:05:04]:   ... successfully finished external process for `exec-java-cmd` with exit code 0
+[02:05:04]: 
+    Result of calling [V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\jbr\bin\java.exe, -version]:
+    openjdk version "25.0.3" 2026-04-21
+OpenJDK Runtime Environment JBR-25.0.3+1-329.124-jcef (build 25.0.3+1-b329.124)
+OpenJDK 64-Bit Server VM JBR-25.0.3+1-329.124-jcef (build 25.0.3+1-b329.124, mixed mode, sharing)
+    
+[02:05:04]: Found following 25.0.3+1-b329.124 in the product: IU 261.26222.65
+[02:05:04]: Setting IDE system property: [jb.consents.confirmation.enabled=false]
+[02:05:04]: Setting IDE system property: [jb.privacy.policy.text=<!--999.999-->]
+[02:05:04]: Setting IDE system property: [jb.privacy.policy.ai.assistant.text=<!--999.999-->]
+[02:05:04]: Setting IDE system property: [marketplace.eula.reviewed.and.accepted=true]
+[02:05:04]: Setting IDE system property: [writerside.eula.reviewed.and.accepted=true]
+[02:05:04]: Setting IDE system property: [ide.newUsersOnboarding=false]
+[02:05:04]: Setting IDE system property: [freeze.reporter.profiling=false]
+[02:05:04]: Setting IDE system property: [idea.fatal.error.notification=true]
+[02:05:04]: Setting IDE system property: [idea.is.integration.test=true]
+[02:05:04]: Setting IDE system property: [ide.browser.jcef.jsQueryPoolSize=10000]
+[02:05:04]: Setting IDE system property: [ide.performance.screenshot=heartbeat]
+[02:05:04]: Setting IDE system property: [idea.diagnostic.opentelemetry.metrics.max-files-to-keep=120]
+[02:05:04]: No profiler is specified.
+[02:05:04]: Setting IDE system property: [snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\snapshots]
+[02:05:04]: Setting IDE system property: [java.rmi.server.hostname=127.0.0.1]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote.host=127.0.0.1]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote=true]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote.port=7777]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote.authenticate=false]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote.ssl=false]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote.serial.filter.pattern='java.**;javax.**;com.intellij.driver.model.**']
+[02:05:04]: Setting IDE system property: [expose.ui.hierarchy.url=true]
+[02:05:04]: Setting IDE system property: [platform.experiment.ab.manual.option=control.option]
+[02:05:04]: Setting IDE system property: [rpc.port=11111]
+[02:05:04]: Setting IDE system property: [memory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log]
+[02:05:04]: Setting IDE system property: [idea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log\opentelemetry.json]
+[02:05:04]: Setting IDE system property: [idea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log]
+[02:05:04]: Test commands to be executed: 
+
+[02:05:04]: Setting IDE system property: [testscript.filename=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\system\revertRestoresBuiltInTemplate.text]
+[02:05:04]: Setting IDE system property: [testscript.must.exist.process.with.non.success.code.on.ide.error=true]
+[02:05:04]: Write vmoptions patch to V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65.vmoptions
+[02:05:04]: Starting IDE for revertRestoresBuiltInTemplate with timeout 10m
+  VM Options: [VMOptions{ env={} -Dij.load.shell.env=false -Dide.instant.shutdown=false -Dfeature.usage.event.log.send.on.ide.close=false -Dlinux.native.menu.force.disable=true -Djdk.gtk.verbose=true -Dvcs.log.index.enable=false -Dide.slow.operations.assertion=false -DintegrationTests.profiler=async -Didea.config.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\config -Didea.system.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\system -Didea.plugins.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\plugins -Didea.local.statistics.without.report=true -Didea.updates.url=http://127.0.0.1 -Dkotest.assertions.collection.enumerate.size=2147483647 -Dide.enable.notification.trace.data.sharing=false -Djb.consents.confirmation.enabled=false -Djb.privacy.policy.text=<!--999.999--> -Djb.privacy.policy.ai.assistant.text=<!--999.999--> -Dmarketplace.eula.reviewed.and.accepted=true -Dwriterside.eula.reviewed.and.accepted=true -Dide.newUsersOnboarding=false -Dfreeze.reporter.profiling=false -Didea.fatal.error.notification=true -Didea.is.integration.test=true -Dide.browser.jcef.jsQueryPoolSize=10000 -Dide.performance.screenshot=heartbeat -XX:ErrorFile=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log\jvm-crash\java_error_in_idea_%p.log -XX:HeapDumpPath=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log\heap-dump\heap-dump.hprof -Xlog:gc*:file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\reports\gcLog.log -Didea.diagnostic.opentelemetry.metrics.max-files-to-keep=120 -Dsnapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\snapshots -Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote.host=127.0.0.1 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7777 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.serial.filter.pattern='java.**;javax.**;com.intellij.driver.model.**' -Dexpose.ui.hierarchy.url=true -Dplatform.experiment.ab.manual.option=control.option -Drpc.port=11111 -Dmemory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log -Didea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log\opentelemetry.json -Didea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log -Dtestscript.filename=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\system\revertRestoresBuiltInTemplate.text -Dtestscript.must.exist.process.with.non.success.code.on.ide.error=true } // VMOptions ]
+  On Java : [C:\Users\<you>\.jdks\jdk-21.0.11+10]
+
+[02:05:04]: Starting external process for `run-ide-revertRestoresBuiltInTemplate`
+  Working directory: V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65
+  Arguments: [V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\bin\idea64.exe]
+  STDOUT will be redirected to: string. STDERR will be redirected to: stdout. STDIN is empty: true
+
+[02:05:04]:   ... started external process `run-ide-revertRestoresBuiltInTemplate` with process ID = 38292
+[14:05:04]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - Unsubscribing com.intellij.ide.starter.driver.engine.DriverWithDetailedLogging@31142d58 for IdeLaunchEvent
+[14:05:04]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - Unsubscribing CompletableDeferredImpl{Active}@1b482cbf for IdeLaunchEvent
+[14:05:04]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [5] PostAndWait start for IdeLaunchEvent: total=2, sequential=0, parallel=2
+[02:05:04]: Setting IDE system property: [jb.consents.confirmation.enabled=false]
+[02:05:04]: Setting IDE system property: [jb.privacy.policy.text=<!--999.999-->]
+[02:05:04]: Setting IDE system property: [jb.privacy.policy.ai.assistant.text=<!--999.999-->]
+[02:05:04]: Setting IDE system property: [marketplace.eula.reviewed.and.accepted=true]
+[02:05:04]: Setting IDE system property: [writerside.eula.reviewed.and.accepted=true]
+[02:05:04]: Setting IDE system property: [ide.newUsersOnboarding=false]
+[02:05:04]: Setting IDE system property: [freeze.reporter.profiling=false]
+[02:05:04]: Setting IDE system property: [idea.fatal.error.notification=true]
+[02:05:04]: Setting IDE system property: [idea.is.integration.test=true]
+[02:05:04]: Setting IDE system property: [ide.browser.jcef.jsQueryPoolSize=10000]
+[02:05:04]: Setting IDE system property: [ide.performance.screenshot=heartbeat]
+[02:05:04]: Setting IDE system property: [idea.diagnostic.opentelemetry.metrics.max-files-to-keep=120]
+[02:05:04]: No profiler is specified.
+[02:05:04]: Setting IDE system property: [snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\snapshots]
+[02:05:04]: Setting IDE system property: [java.rmi.server.hostname=127.0.0.1]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote.host=127.0.0.1]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote=true]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote.port=7777]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote.authenticate=false]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote.ssl=false]
+[02:05:04]: Setting IDE system property: [com.sun.management.jmxremote.serial.filter.pattern='java.**;javax.**;com.intellij.driver.model.**']
+[02:05:04]: Setting IDE system property: [expose.ui.hierarchy.url=true]
+[02:05:04]: Setting IDE system property: [platform.experiment.ab.manual.option=control.option]
+[02:05:04]: Setting IDE system property: [rpc.port=11111]
+[02:05:04]: Setting IDE system property: [memory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log]
+[02:05:04]: Setting IDE system property: [idea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log\opentelemetry.json]
+[02:05:04]: Setting IDE system property: [idea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log]
+[02:05:04]: Setting IDE system property: [memory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log]
+[02:05:04]: Setting IDE system property: [idea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log\opentelemetry.json]
+[02:05:04]: Setting IDE system property: [idea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\log]
+[02:05:04]: Test commands to be executed: 
+
+[02:05:04]: Setting IDE system property: [testscript.filename=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\revertRestoresBuiltInTemplate\system\revertRestoresBuiltInTemplate.text]
+[02:05:04]: Setting IDE system property: [testscript.must.exist.process.with.non.success.code.on.ide.error=true]
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:04,872 [    358]   WARN - #c.i.i.p.PluginManager - Problems found loading plugins:
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Refactor-X' (Refactor-X) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Cron Expressions' (com.intellij.cron) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Apache Velocity' (com.intellij.velocity) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'FTP/SFTP/WebDAV Connectivity' (com.jetbrains.plugins.webDeployment) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'SSH Remote Run' (org.jetbrains.plugins.remote-run) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'WSL Support Framework' (org.jetbrains.plugins.wsl.remoteSdk) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'In-Editor Performance Hints' (com.intellij.LineProfiler) requires plugin with id=com.intellij.modules.ultimate to be enabled
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Spring Messaging' (com.intellij.spring.messaging) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Spring Modulith' (com.intellij.spring.modulith) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Spring Cloud' (com.intellij.spring.cloud) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Spring Security' (com.intellij.spring.security) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Spring Integration Patterns' (com.intellij.spring.integration) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Jakarta EE: RESTful Web Services (JAX-RS)' (com.jetbrains.restWebServices) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Jakarta EE: Messaging (JMS)' (com.intellij.javaee.extensions) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Jakarta EE: Contexts and Dependency Injection (CDI)' (com.intellij.cdi) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Jakarta EE: Bean Validation' (com.intellij.beanValidation) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'FreeMarker' (com.intellij.freemarker) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'AOP Pointcut Language' (com.intellij.aop) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Remote Development Gateway' (com.jetbrains.gateway) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'JVM Persistence Frameworks' (com.intellij.persistence) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Quarkus' (com.intellij.quarkus) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Micronaut' (com.intellij.micronaut) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Jakarta EE: Persistence (JPA)' (com.intellij.javaee.jpa) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Spring Data' (com.intellij.spring.data) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Reverse Engineering' (com.intellij.javaee.reverseEngineering) requires plugin with id=com.intellij.javaee.jpa to be enabled
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Jakarta EE: Data' (com.intellij.javaee.jakarta.data) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Jakarta EE: Application Servers' (com.intellij.javaee.app.servers.integration) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Tomcat and TomEE' (Tomcat) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'WildFly' (JBoss) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Hibernate' (com.intellij.hibernate) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Time Tracking' (com.intellij.tasks.timeTracking) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Sass' (org.jetbrains.plugins.sass) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Jakarta EE: Web/Servlets' (com.intellij.javaee.web) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Jakarta EE: Server Pages (JSP)' (com.intellij.jsp) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'PostCSS' (org.intellij.plugins.postcss) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Less' (org.jetbrains.plugins.less) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'JavaScript Debugger' (JavaScriptDebugger) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Spring Web' (com.intellij.spring.mvc) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Tailwind CSS' (com.intellij.tailwindcss) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Styled Components & Styled JSX' (com.deadlock.scsyntax) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Node.js' (NodeJS) requires plugin with id=JavaScriptDebugger to be enabled
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Node.js Remote Interpreter' (org.jetbrains.plugins.node-remote-interpreter) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Next.js' (intellij.nextjs) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Karma' (Karma) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Kubernetes' (com.intellij.kubernetes) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err]   Plugin 'Dev Containers' (org.jetbrains.plugins.docker.gateway) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:04,896 [    382]   WARN - #c.i.p.instanceContainer - InstanceNotOverridableException: Override failed for com.intellij.openapi.project.impl.ProjectStoreFactory: com.intellij.configurationScript.providers.ConfigurationScriptProjectStoreFactory attempts to override com.intellij.configurationStore.PlatformLangProjectStoreFactory, but the existing implementation is not overriddable (not declared as 'open=true')
+[02:05:04]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:04,899 [    385]   WARN - #c.i.p.instanceContainer - InstanceNotOverridableException: Override failed for com.intellij.modcommand.ModCommandExecutor: com.jetbrains.rdserver.ui.intentions.RemoteModCommandExecutor attempts to override com.intellij.lang.impl.modcommand.ModCommandExecutorImpl, but the existing implementation is not overriddable (not declared as 'open=true')
+[02:05:05]:   [ide-revertRestoresBuiltInTemplate-err] WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+[02:05:05]:   [ide-revertRestoresBuiltInTemplate-err] WARNING: sun.misc.Unsafe::allocateMemory has been called by io.netty.util.internal.PlatformDependent0$2
+[02:05:05]:   [ide-revertRestoresBuiltInTemplate-err] WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$2
+[02:05:05]:   [ide-revertRestoresBuiltInTemplate-err] WARNING: sun.misc.Unsafe::allocateMemory will be removed in a future release
+[02:05:05]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:05,142 [    628]   WARN - #c.i.s.c.i.StationSocketConnectionLoop - Discovery connection failed with AnnotatedConnectException(ConnectException) (Connection refused: connect: C:\Users\<you>\Temp\jb.station.<you>.sock)
+[02:05:05]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:05,375 [    861]   WARN - #c.i.s.c.i.StationSocketConnectionLoop - RecentProjects connection failed with AnnotatedConnectException(ConnectException) (Connection refused: connect: C:\Users\<you>\Temp\jb.station.<you>.sock)
+Step 'Invoke action Settings…' is started
+Step 'Invoke action Settings…' is finished
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,196 [   1682]   WARN - #c.i.o.o.e.ConfigurableExtensionPointUtil - ignore deprecated groupId: language for id: preferences.language.Kotlin.scripting
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,868 [   2354]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Background.Default.Dark is deprecated for new UI themes, use Checkbox.Background.Default instead
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,869 [   2355]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Border.Default.Dark is deprecated for new UI themes, use Checkbox.Border.Default instead
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,869 [   2355]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Border.Selected.Dark is deprecated for new UI themes, use Checkbox.Border.Selected instead
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,869 [   2355]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Foreground.Selected.Dark is deprecated for new UI themes, use Checkbox.Foreground.Selected instead
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,869 [   2355]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Focus.Wide.Dark is deprecated for new UI themes, use Checkbox.Focus.Wide instead
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,869 [   2355]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: color key Checkbox.Focus.Thin.Default.Dark is not supported and therefore ignored
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,869 [   2355]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: color key Checkbox.Focus.Thin.Selected.Dark is not supported and therefore ignored
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,869 [   2355]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Background.Disabled.Dark is deprecated for new UI themes, use Checkbox.Background.Disabled instead
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,869 [   2355]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Background.Selected.Dark is deprecated for new UI themes, use Checkbox.Background.Selected instead
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,869 [   2355]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Border.Disabled.Dark is deprecated for new UI themes, use Checkbox.Border.Disabled instead
+[02:05:06]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:06,869 [   2355]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Foreground.Disabled.Dark is deprecated for new UI themes, use Checkbox.Foreground.Disabled instead
+[02:05:07]: ?[35mUI Hierarchy: http://localhost:11111/api/remote-driver/?[0m
+[14:05:07]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [5] PostAndWait finished for IdeLaunchEvent. Exceptions: []
+[02:05:07]: Creating reports dir 'monitoring-thread-dumps-ide'
+Step 'Type text 'AUTOTEST_EDIT_MARKER'' is started
+Step 'Type text 'AUTOTEST_EDIT_MARKER'' is finished
+Step 'Invoke action Settings…' is started
+Step 'Invoke action Settings…' is finished
+[02:05:20]:   [ide-revertRestoresBuiltInTemplate-err] 2026-07-18 14:05:20,117 [  15603]   WARN - #c.i.o.o.e.ConfigurableExtensionPointUtil - ignore deprecated groupId: language for id: preferences.language.Kotlin.scripting
+[02:05:28]:  ... cancelling and waiting for process `"On process run-ide-revertRestoresBuiltInTemplate created job#13":StandaloneCoroutine{Active}@7aa23d4c` job ... 
+[02:05:28]: IDE run revertRestoresBuiltInTemplate completed in 24.347558400s
+[02:05:28]: Run VM options validation
+[02:05:28]: Finished VM options validation
+##teamcity[testMetadata  type='link' name='Link to Logs and artifacts' value='null' ]
+[02:05:28]: Successfully finished publishArtifacts run for revertRestoresBuiltInTemplate
+[02:05:28]: IDEStartResult(runContext=IDERunContext(testContext=com.intellij.ide.starter.ide.IDETestContext@5d97caa4, commandLine=fun startIdeWithoutProject(com.intellij.ide.starter.runner.IDERunContext): com.intellij.ide.starter.runner.IDECommandLine, commands=com.intellij.tools.ide.performanceTesting.commands.CommandChain@1a325929, runTimeout=10m, useStartupScript=true, verboseOutput=false, launchName=, expectedKill=false, expectedExitCode=0, analyzeProcessExit=false, collectNativeThreads=false, stdOut=null), executionTime=24.347558400s, exitCode=0, vmOptionsDiff=VMOptionsDiff(newLines=[], missingLines=[]), failureError=null, frontendStartResult=null)
+[02:05:28]: IDERunContext(testContext=com.intellij.ide.starter.ide.IDETestContext@5d97caa4, commandLine=fun startIdeWithoutProject(com.intellij.ide.starter.runner.IDERunContext): com.intellij.ide.starter.runner.IDECommandLine, commands=com.intellij.tools.ide.performanceTesting.commands.CommandChain@1a325929, runTimeout=10m, useStartupScript=true, verboseOutput=false, launchName=, expectedKill=false, expectedExitCode=0, analyzeProcessExit=false, collectNativeThreads=false, stdOut=null)
+[02:05:28]: Performing 'Canceling children of 'Test's supervisor scope': Test `revertRestoresBuiltInTemplate()` execution is finished' with catching all exceptions
+[02:05:28]: Resolving IDE build for createdTemplateIsSavedAndListed...
+[02:05:28]: Requesting JetBrains products by URL: https://data.services.jetbrains.com/products/releases?code=IU&type=release
+[02:05:29]: Requesting JetBrains products by URL: https://data.services.jetbrains.com/products/releases?code=IU&type=eap
+[02:05:29]: Requesting JetBrains products by URL: https://data.services.jetbrains.com/products/releases?code=IU&type=preview
+[02:05:30]: Installer file V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\installers\IU\ideaIU-261.26222.65.exe already exists. Skipping download.
+[02:05:30]: Build directory V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65 already exists for the binary V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\installers\IU\ideaIU-261.26222.65.exe
+[02:05:30]: Using IDE paths for 'createdTemplateIsSavedAndListed': IDE Test Paths at V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed
+[02:05:30]: IDE to run for 'createdTemplateIsSavedAndListed': IDE{IU, 261.26222.65, Windows, home=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65}
+[02:05:30]: Cleaning system dir for com.intellij.ide.starter.ide.IDETestContext@12abcd1e at IDE Test Paths at V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed
+[02:05:30]: Setting IDE system property: [ij.load.shell.env=false]
+[02:05:30]: Setting IDE system property: [ide.instant.shutdown=false]
+[02:05:30]: Setting IDE system property: [feature.usage.event.log.send.on.ide.close=false]
+[02:05:30]: Setting IDE system property: [linux.native.menu.force.disable=true]
+[02:05:30]: Setting IDE system property: [jdk.gtk.verbose=true]
+[02:05:30]: Setting IDE system property: [vcs.log.index.enable=false]
+[02:05:30]: Setting IDE system property: [ide.slow.operations.assertion=false]
+[02:05:30]: Setting IDE system property: [integrationTests.profiler=async]
+[02:05:30]: Setting IDE system property: [idea.config.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\config]
+[02:05:30]: Setting IDE system property: [idea.system.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\system]
+[02:05:30]: Setting IDE system property: [idea.plugins.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\plugins]
+[02:05:30]: Setting IDE system property: [idea.local.statistics.without.report=true]
+[02:05:30]: Setting IDE system property: [idea.updates.url=http://127.0.0.1]
+[02:05:30]: Setting IDE system property: [kotest.assertions.collection.enumerate.size=2147483647]
+[02:05:30]: Setting IDE system property: [ide.enable.notification.trace.data.sharing=false]
+[14:05:30]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [9] PostAndWait start for TestContextInitializedEvent: total=1, sequential=0, parallel=1
+[02:05:30]: Starter configuration storage: {MONITORING_DUMPS_INTERVAL_SECONDS=60, ENABLE_SCRAMBLING_FOR_DEVSERVER=false, INSTALLER_INCLUDE_RUNTIME_MODULE_REPOSITORY=false, AFTER_EACH_MESSAGE_BUS_CLEANUP=false, LOG_ENVIRONMENT_VARIABLES=false, SPLIT_MODE_ENABLED=false, DEBUG_LOGGING_ENABLED=false}
+[14:05:30]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [9] PostAndWait finished for TestContextInitializedEvent. Exceptions: []
+[14:05:30]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - New subscriber Subscriber(subscriberName=com.intellij.ide.starter.driver.engine.DriverWithDetailedLogging@2c8b8de0, timeout=2m, executeOnce=true, sequential=false, callback=(com.intellij.ide.starter.runner.events.IdeLaunchEvent) -> kotlin.Unit) for IdeLaunchEvent
+[14:05:30]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - New subscriber Subscriber(subscriberName=CompletableDeferredImpl{Active}@4fb57fb3, timeout=2m, executeOnce=true, sequential=false, callback=(com.intellij.ide.starter.runner.events.IdeLaunchEvent) -> kotlin.Unit) for IdeLaunchEvent
+[02:05:30]: Creating reports dir 'reports'
+[02:05:30]: Creating reports dir 'snapshots'
+[02:05:30]: Reports dir 'createdTemplateIsSavedAndListed' is already created
+[02:05:30]: Creating reports dir 'log'
+[02:05:30]: Starting external process for `exec-java-cmd`
+  Working directory: V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\jbr
+  Arguments: [V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\jbr\bin\java.exe -version]
+  STDOUT will be redirected to: string. STDERR will be redirected to: string. STDIN is empty: true
+
+[02:05:30]:   ... started external process `exec-java-cmd` with process ID = 13536
+[02:05:30]:   ... successfully finished external process for `exec-java-cmd` with exit code 0
+[02:05:30]: 
+    Result of calling [V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\jbr\bin\java.exe, -version]:
+    openjdk version "25.0.3" 2026-04-21
+OpenJDK Runtime Environment JBR-25.0.3+1-329.124-jcef (build 25.0.3+1-b329.124)
+OpenJDK 64-Bit Server VM JBR-25.0.3+1-329.124-jcef (build 25.0.3+1-b329.124, mixed mode, sharing)
+    
+[02:05:30]: Found following 25.0.3+1-b329.124 in the product: IU 261.26222.65
+[02:05:30]: Setting IDE system property: [jb.consents.confirmation.enabled=false]
+[02:05:30]: Setting IDE system property: [jb.privacy.policy.text=<!--999.999-->]
+[02:05:30]: Setting IDE system property: [jb.privacy.policy.ai.assistant.text=<!--999.999-->]
+[02:05:30]: Setting IDE system property: [marketplace.eula.reviewed.and.accepted=true]
+[02:05:30]: Setting IDE system property: [writerside.eula.reviewed.and.accepted=true]
+[02:05:30]: Setting IDE system property: [ide.newUsersOnboarding=false]
+[02:05:30]: Setting IDE system property: [freeze.reporter.profiling=false]
+[02:05:30]: Setting IDE system property: [idea.fatal.error.notification=true]
+[02:05:30]: Setting IDE system property: [idea.is.integration.test=true]
+[02:05:30]: Setting IDE system property: [ide.browser.jcef.jsQueryPoolSize=10000]
+[02:05:30]: Setting IDE system property: [ide.performance.screenshot=heartbeat]
+[02:05:30]: Setting IDE system property: [idea.diagnostic.opentelemetry.metrics.max-files-to-keep=120]
+[02:05:30]: No profiler is specified.
+[02:05:30]: Setting IDE system property: [snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\snapshots]
+[02:05:30]: Setting IDE system property: [java.rmi.server.hostname=127.0.0.1]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote.host=127.0.0.1]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote=true]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote.port=7777]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote.authenticate=false]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote.ssl=false]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote.serial.filter.pattern='java.**;javax.**;com.intellij.driver.model.**']
+[02:05:30]: Setting IDE system property: [expose.ui.hierarchy.url=true]
+[02:05:30]: Setting IDE system property: [platform.experiment.ab.manual.option=control.option]
+[02:05:30]: Setting IDE system property: [rpc.port=11111]
+[02:05:30]: Setting IDE system property: [memory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log]
+[02:05:30]: Setting IDE system property: [idea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log\opentelemetry.json]
+[02:05:30]: Setting IDE system property: [idea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log]
+[02:05:30]: Test commands to be executed: 
+
+[02:05:30]: Setting IDE system property: [testscript.filename=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\system\createdTemplateIsSavedAndListed.text]
+[02:05:30]: Setting IDE system property: [testscript.must.exist.process.with.non.success.code.on.ide.error=true]
+[02:05:30]: Write vmoptions patch to V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65.vmoptions
+[02:05:30]: Starting IDE for createdTemplateIsSavedAndListed with timeout 10m
+  VM Options: [VMOptions{ env={} -Dij.load.shell.env=false -Dide.instant.shutdown=false -Dfeature.usage.event.log.send.on.ide.close=false -Dlinux.native.menu.force.disable=true -Djdk.gtk.verbose=true -Dvcs.log.index.enable=false -Dide.slow.operations.assertion=false -DintegrationTests.profiler=async -Didea.config.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\config -Didea.system.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\system -Didea.plugins.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\plugins -Didea.local.statistics.without.report=true -Didea.updates.url=http://127.0.0.1 -Dkotest.assertions.collection.enumerate.size=2147483647 -Dide.enable.notification.trace.data.sharing=false -Djb.consents.confirmation.enabled=false -Djb.privacy.policy.text=<!--999.999--> -Djb.privacy.policy.ai.assistant.text=<!--999.999--> -Dmarketplace.eula.reviewed.and.accepted=true -Dwriterside.eula.reviewed.and.accepted=true -Dide.newUsersOnboarding=false -Dfreeze.reporter.profiling=false -Didea.fatal.error.notification=true -Didea.is.integration.test=true -Dide.browser.jcef.jsQueryPoolSize=10000 -Dide.performance.screenshot=heartbeat -XX:ErrorFile=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log\jvm-crash\java_error_in_idea_%p.log -XX:HeapDumpPath=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log\heap-dump\heap-dump.hprof -Xlog:gc*:file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\reports\gcLog.log -Didea.diagnostic.opentelemetry.metrics.max-files-to-keep=120 -Dsnapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\snapshots -Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote.host=127.0.0.1 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7777 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.serial.filter.pattern='java.**;javax.**;com.intellij.driver.model.**' -Dexpose.ui.hierarchy.url=true -Dplatform.experiment.ab.manual.option=control.option -Drpc.port=11111 -Dmemory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log -Didea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log\opentelemetry.json -Didea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log -Dtestscript.filename=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\system\createdTemplateIsSavedAndListed.text -Dtestscript.must.exist.process.with.non.success.code.on.ide.error=true } // VMOptions ]
+  On Java : [C:\Users\<you>\.jdks\jdk-21.0.11+10]
+
+[02:05:30]: Starting external process for `run-ide-createdTemplateIsSavedAndListed`
+  Working directory: V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65
+  Arguments: [V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\bin\idea64.exe]
+  STDOUT will be redirected to: string. STDERR will be redirected to: stdout. STDIN is empty: true
+
+[02:05:30]:   ... started external process `run-ide-createdTemplateIsSavedAndListed` with process ID = 4928
+[14:05:30]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - Unsubscribing com.intellij.ide.starter.driver.engine.DriverWithDetailedLogging@2c8b8de0 for IdeLaunchEvent
+[14:05:30]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - Unsubscribing CompletableDeferredImpl{Active}@4fb57fb3 for IdeLaunchEvent
+[14:05:30]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [12] PostAndWait start for IdeLaunchEvent: total=2, sequential=0, parallel=2
+[02:05:30]: Setting IDE system property: [jb.consents.confirmation.enabled=false]
+[02:05:30]: Setting IDE system property: [jb.privacy.policy.text=<!--999.999-->]
+[02:05:30]: Setting IDE system property: [jb.privacy.policy.ai.assistant.text=<!--999.999-->]
+[02:05:30]: Setting IDE system property: [marketplace.eula.reviewed.and.accepted=true]
+[02:05:30]: Setting IDE system property: [writerside.eula.reviewed.and.accepted=true]
+[02:05:30]: Setting IDE system property: [ide.newUsersOnboarding=false]
+[02:05:30]: Setting IDE system property: [freeze.reporter.profiling=false]
+[02:05:30]: Setting IDE system property: [idea.fatal.error.notification=true]
+[02:05:30]: Setting IDE system property: [idea.is.integration.test=true]
+[02:05:30]: Setting IDE system property: [ide.browser.jcef.jsQueryPoolSize=10000]
+[02:05:30]: Setting IDE system property: [ide.performance.screenshot=heartbeat]
+[02:05:30]: Setting IDE system property: [idea.diagnostic.opentelemetry.metrics.max-files-to-keep=120]
+[02:05:30]: No profiler is specified.
+[02:05:30]: Setting IDE system property: [snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\snapshots]
+[02:05:30]: Setting IDE system property: [java.rmi.server.hostname=127.0.0.1]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote.host=127.0.0.1]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote=true]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote.port=7777]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote.authenticate=false]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote.ssl=false]
+[02:05:30]: Setting IDE system property: [com.sun.management.jmxremote.serial.filter.pattern='java.**;javax.**;com.intellij.driver.model.**']
+[02:05:30]: Setting IDE system property: [expose.ui.hierarchy.url=true]
+[02:05:30]: Setting IDE system property: [platform.experiment.ab.manual.option=control.option]
+[02:05:30]: Setting IDE system property: [rpc.port=11111]
+[02:05:30]: Setting IDE system property: [memory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log]
+[02:05:30]: Setting IDE system property: [idea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log\opentelemetry.json]
+[02:05:30]: Setting IDE system property: [idea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log]
+[02:05:30]: Setting IDE system property: [memory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log]
+[02:05:30]: Setting IDE system property: [idea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log\opentelemetry.json]
+[02:05:30]: Setting IDE system property: [idea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\log]
+[02:05:30]: Test commands to be executed: 
+
+[02:05:30]: Setting IDE system property: [testscript.filename=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\createdTemplateIsSavedAndListed\system\createdTemplateIsSavedAndListed.text]
+[02:05:30]: Setting IDE system property: [testscript.must.exist.process.with.non.success.code.on.ide.error=true]
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:31,360 [    378]   WARN - #c.i.i.p.PluginManager - Problems found loading plugins:
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Refactor-X' (Refactor-X) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Cron Expressions' (com.intellij.cron) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Apache Velocity' (com.intellij.velocity) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'FTP/SFTP/WebDAV Connectivity' (com.jetbrains.plugins.webDeployment) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'SSH Remote Run' (org.jetbrains.plugins.remote-run) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'WSL Support Framework' (org.jetbrains.plugins.wsl.remoteSdk) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'In-Editor Performance Hints' (com.intellij.LineProfiler) requires plugin with id=com.intellij.modules.ultimate to be enabled
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Spring Messaging' (com.intellij.spring.messaging) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Spring Modulith' (com.intellij.spring.modulith) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Spring Cloud' (com.intellij.spring.cloud) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Spring Security' (com.intellij.spring.security) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Spring Integration Patterns' (com.intellij.spring.integration) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Jakarta EE: RESTful Web Services (JAX-RS)' (com.jetbrains.restWebServices) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Jakarta EE: Messaging (JMS)' (com.intellij.javaee.extensions) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Jakarta EE: Contexts and Dependency Injection (CDI)' (com.intellij.cdi) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Jakarta EE: Bean Validation' (com.intellij.beanValidation) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'FreeMarker' (com.intellij.freemarker) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'AOP Pointcut Language' (com.intellij.aop) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Remote Development Gateway' (com.jetbrains.gateway) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'JVM Persistence Frameworks' (com.intellij.persistence) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Quarkus' (com.intellij.quarkus) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Micronaut' (com.intellij.micronaut) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Jakarta EE: Persistence (JPA)' (com.intellij.javaee.jpa) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Spring Data' (com.intellij.spring.data) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Reverse Engineering' (com.intellij.javaee.reverseEngineering) requires plugin with id=com.intellij.javaee.jpa to be enabled
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Jakarta EE: Data' (com.intellij.javaee.jakarta.data) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Jakarta EE: Application Servers' (com.intellij.javaee.app.servers.integration) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Tomcat and TomEE' (Tomcat) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'WildFly' (JBoss) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Hibernate' (com.intellij.hibernate) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Time Tracking' (com.intellij.tasks.timeTracking) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Sass' (org.jetbrains.plugins.sass) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Jakarta EE: Web/Servlets' (com.intellij.javaee.web) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Jakarta EE: Server Pages (JSP)' (com.intellij.jsp) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'PostCSS' (org.intellij.plugins.postcss) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Less' (org.jetbrains.plugins.less) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'JavaScript Debugger' (JavaScriptDebugger) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Spring Web' (com.intellij.spring.mvc) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Tailwind CSS' (com.intellij.tailwindcss) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Styled Components & Styled JSX' (com.deadlock.scsyntax) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Node.js' (NodeJS) requires plugin with id=JavaScriptDebugger to be enabled
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Node.js Remote Interpreter' (org.jetbrains.plugins.node-remote-interpreter) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Next.js' (intellij.nextjs) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Karma' (Karma) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Kubernetes' (com.intellij.kubernetes) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err]   Plugin 'Dev Containers' (org.jetbrains.plugins.docker.gateway) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:31,385 [    403]   WARN - #c.i.p.instanceContainer - InstanceNotOverridableException: Override failed for com.intellij.openapi.project.impl.ProjectStoreFactory: com.intellij.configurationScript.providers.ConfigurationScriptProjectStoreFactory attempts to override com.intellij.configurationStore.PlatformLangProjectStoreFactory, but the existing implementation is not overriddable (not declared as 'open=true')
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:31,387 [    405]   WARN - #c.i.p.instanceContainer - InstanceNotOverridableException: Override failed for com.intellij.modcommand.ModCommandExecutor: com.jetbrains.rdserver.ui.intentions.RemoteModCommandExecutor attempts to override com.intellij.lang.impl.modcommand.ModCommandExecutorImpl, but the existing implementation is not overriddable (not declared as 'open=true')
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err] WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err] WARNING: sun.misc.Unsafe::allocateMemory has been called by io.netty.util.internal.PlatformDependent0$2
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err] WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$2
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err] WARNING: sun.misc.Unsafe::allocateMemory will be removed in a future release
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:31,648 [    666]   WARN - #c.i.s.c.i.StationSocketConnectionLoop - Discovery connection failed with AnnotatedConnectException(ConnectException) (Connection refused: connect: C:\Users\<you>\Temp\jb.station.<you>.sock)
+[02:05:31]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:31,804 [    822]   WARN - #c.i.s.c.i.StationSocketConnectionLoop - RecentProjects connection failed with AnnotatedConnectException(ConnectException) (Connection refused: connect: C:\Users\<you>\Temp\jb.station.<you>.sock)
+Step 'Invoke action Settings…' is started
+Step 'Invoke action Settings…' is finished
+[02:05:32]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:32,631 [   1649]   WARN - #c.i.o.o.e.ConfigurableExtensionPointUtil - ignore deprecated groupId: language for id: preferences.language.Kotlin.scripting
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Background.Default.Dark is deprecated for new UI themes, use Checkbox.Background.Default instead
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Border.Default.Dark is deprecated for new UI themes, use Checkbox.Border.Default instead
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Border.Selected.Dark is deprecated for new UI themes, use Checkbox.Border.Selected instead
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Foreground.Selected.Dark is deprecated for new UI themes, use Checkbox.Foreground.Selected instead
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Focus.Wide.Dark is deprecated for new UI themes, use Checkbox.Focus.Wide instead
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: color key Checkbox.Focus.Thin.Default.Dark is not supported and therefore ignored
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: color key Checkbox.Focus.Thin.Selected.Dark is not supported and therefore ignored
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Background.Disabled.Dark is deprecated for new UI themes, use Checkbox.Background.Disabled instead
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Background.Selected.Dark is deprecated for new UI themes, use Checkbox.Background.Selected instead
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Border.Disabled.Dark is deprecated for new UI themes, use Checkbox.Border.Disabled instead
+[02:05:33]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:33,385 [   2403]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Foreground.Disabled.Dark is deprecated for new UI themes, use Checkbox.Foreground.Disabled instead
+[02:05:33]: ?[35mUI Hierarchy: http://localhost:11111/api/remote-driver/?[0m
+[14:05:33]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [12] PostAndWait finished for IdeLaunchEvent. Exceptions: []
+[02:05:33]: Creating reports dir 'monitoring-thread-dumps-ide'
+Step 'Set text '// autotest body for ${NAME}'' is started
+Step 'Set text '// autotest body for ${NAME}'' is finished
+Step 'Invoke action Settings…' is started
+Step 'Invoke action Settings…' is finished
+[02:05:39]:   [ide-createdTemplateIsSavedAndListed-err] 2026-07-18 14:05:39,035 [   8053]   WARN - #c.i.o.o.e.ConfigurableExtensionPointUtil - ignore deprecated groupId: language for id: preferences.language.Kotlin.scripting
+[02:05:46]:  ... cancelling and waiting for process `"On process run-ide-createdTemplateIsSavedAndListed created job#32":StandaloneCoroutine{Active}@5ce4b124` job ... 
+[02:05:46]: IDE run createdTemplateIsSavedAndListed completed in 15.562723400s
+[02:05:46]: Run VM options validation
+[02:05:46]: Finished VM options validation
+##teamcity[testMetadata  type='link' name='Link to Logs and artifacts' value='null' ]
+[02:05:46]: Successfully finished publishArtifacts run for createdTemplateIsSavedAndListed
+[02:05:46]: IDEStartResult(runContext=IDERunContext(testContext=com.intellij.ide.starter.ide.IDETestContext@12abcd1e, commandLine=fun startIdeWithoutProject(com.intellij.ide.starter.runner.IDERunContext): com.intellij.ide.starter.runner.IDECommandLine, commands=com.intellij.tools.ide.performanceTesting.commands.CommandChain@21ee96d1, runTimeout=10m, useStartupScript=true, verboseOutput=false, launchName=, expectedKill=false, expectedExitCode=0, analyzeProcessExit=false, collectNativeThreads=false, stdOut=null), executionTime=15.562723400s, exitCode=0, vmOptionsDiff=VMOptionsDiff(newLines=[], missingLines=[]), failureError=null, frontendStartResult=null)
+[02:05:46]: IDERunContext(testContext=com.intellij.ide.starter.ide.IDETestContext@12abcd1e, commandLine=fun startIdeWithoutProject(com.intellij.ide.starter.runner.IDERunContext): com.intellij.ide.starter.runner.IDECommandLine, commands=com.intellij.tools.ide.performanceTesting.commands.CommandChain@21ee96d1, runTimeout=10m, useStartupScript=true, verboseOutput=false, launchName=, expectedKill=false, expectedExitCode=0, analyzeProcessExit=false, collectNativeThreads=false, stdOut=null)
+[02:05:46]: Performing 'Canceling children of 'Test's supervisor scope': Test `createdTemplateIsSavedAndListed()` execution is finished' with catching all exceptions
+[02:05:46]: Resolving IDE build for newFileFromTemplateUsesTemplateBody...
+[02:05:46]: Requesting JetBrains products by URL: https://data.services.jetbrains.com/products/releases?code=IU&type=release
+[02:05:47]: Requesting JetBrains products by URL: https://data.services.jetbrains.com/products/releases?code=IU&type=eap
+[02:05:47]: Requesting JetBrains products by URL: https://data.services.jetbrains.com/products/releases?code=IU&type=preview
+[02:05:48]: Installer file V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\installers\IU\ideaIU-261.26222.65.exe already exists. Skipping download.
+[02:05:48]: Build directory V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65 already exists for the binary V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\installers\IU\ideaIU-261.26222.65.exe
+[02:05:48]: Using IDE paths for 'newFileFromTemplateUsesTemplateBody': IDE Test Paths at V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody
+[02:05:48]: IDE to run for 'newFileFromTemplateUsesTemplateBody': IDE{IU, 261.26222.65, Windows, home=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65}
+[02:05:48]: Cleaning system dir for com.intellij.ide.starter.ide.IDETestContext@4e50ae56 at IDE Test Paths at V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody
+[02:05:48]: Setting IDE system property: [ij.load.shell.env=false]
+[02:05:48]: Setting IDE system property: [ide.instant.shutdown=false]
+[02:05:48]: Setting IDE system property: [feature.usage.event.log.send.on.ide.close=false]
+[02:05:48]: Setting IDE system property: [linux.native.menu.force.disable=true]
+[02:05:48]: Setting IDE system property: [jdk.gtk.verbose=true]
+[02:05:48]: Setting IDE system property: [vcs.log.index.enable=false]
+[02:05:48]: Setting IDE system property: [ide.slow.operations.assertion=false]
+[02:05:48]: Setting IDE system property: [integrationTests.profiler=async]
+[02:05:48]: Setting IDE system property: [idea.config.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\config]
+[02:05:48]: Setting IDE system property: [idea.system.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\system]
+[02:05:48]: Setting IDE system property: [idea.plugins.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\plugins]
+[02:05:48]: Trusted xml file content: <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application>
+    
+  <component name="Trusted.Paths">
+        
+    <option name="TRUSTED_PROJECT_PATHS">
+            
+      <map>
+        <entry key="V:\JB Automation Test\intellij-file-templates-ui-tests\build\test-fixtures\sample-project-1784376346385" value="true"/>
+      </map>
+          
+    </option>
+      
+  </component>
+    
+  <component name="Trusted.Paths.Settings">
+        
+    <option name="TRUSTED_PATHS">
+            
+      <list/>
+          
+    </option>
+      
+  </component>
+  
+</application>
+
+[02:05:48]: Setting IDE system property: [idea.local.statistics.without.report=true]
+[02:05:48]: Setting IDE system property: [idea.updates.url=http://127.0.0.1]
+[02:05:48]: Setting IDE system property: [kotest.assertions.collection.enumerate.size=2147483647]
+[02:05:48]: Setting IDE system property: [ide.enable.notification.trace.data.sharing=false]
+[14:05:48]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [16] PostAndWait start for TestContextInitializedEvent: total=1, sequential=0, parallel=1
+[02:05:48]: Starter configuration storage: {MONITORING_DUMPS_INTERVAL_SECONDS=60, ENABLE_SCRAMBLING_FOR_DEVSERVER=false, INSTALLER_INCLUDE_RUNTIME_MODULE_REPOSITORY=false, AFTER_EACH_MESSAGE_BUS_CLEANUP=false, LOG_ENVIRONMENT_VARIABLES=false, SPLIT_MODE_ENABLED=false, DEBUG_LOGGING_ENABLED=false}
+[14:05:48]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [16] PostAndWait finished for TestContextInitializedEvent. Exceptions: []
+[14:05:48]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - New subscriber Subscriber(subscriberName=com.intellij.ide.starter.driver.engine.DriverWithDetailedLogging@340c5fb6, timeout=2m, executeOnce=true, sequential=false, callback=(com.intellij.ide.starter.runner.events.IdeLaunchEvent) -> kotlin.Unit) for IdeLaunchEvent
+[14:05:48]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - New subscriber Subscriber(subscriberName=CompletableDeferredImpl{Active}@322b09da, timeout=2m, executeOnce=true, sequential=false, callback=(com.intellij.ide.starter.runner.events.IdeLaunchEvent) -> kotlin.Unit) for IdeLaunchEvent
+[02:05:48]: Creating reports dir 'reports'
+[02:05:48]: Creating reports dir 'snapshots'
+[02:05:48]: Reports dir 'newFileFromTemplateUsesTemplateBody' is already created
+[02:05:48]: Creating reports dir 'log'
+[02:05:48]: Starting external process for `exec-java-cmd`
+  Working directory: V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\jbr
+  Arguments: [V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\jbr\bin\java.exe -version]
+  STDOUT will be redirected to: string. STDERR will be redirected to: string. STDIN is empty: true
+
+[02:05:48]:   ... started external process `exec-java-cmd` with process ID = 37464
+[02:05:48]:   ... successfully finished external process for `exec-java-cmd` with exit code 0
+[02:05:48]: 
+    Result of calling [V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\jbr\bin\java.exe, -version]:
+    openjdk version "25.0.3" 2026-04-21
+OpenJDK Runtime Environment JBR-25.0.3+1-329.124-jcef (build 25.0.3+1-b329.124)
+OpenJDK 64-Bit Server VM JBR-25.0.3+1-329.124-jcef (build 25.0.3+1-b329.124, mixed mode, sharing)
+    
+[02:05:48]: Found following 25.0.3+1-b329.124 in the product: IU 261.26222.65
+[02:05:48]: Setting IDE system property: [jb.consents.confirmation.enabled=false]
+[02:05:48]: Setting IDE system property: [jb.privacy.policy.text=<!--999.999-->]
+[02:05:48]: Setting IDE system property: [jb.privacy.policy.ai.assistant.text=<!--999.999-->]
+[02:05:48]: Setting IDE system property: [marketplace.eula.reviewed.and.accepted=true]
+[02:05:48]: Setting IDE system property: [writerside.eula.reviewed.and.accepted=true]
+[02:05:48]: Setting IDE system property: [ide.newUsersOnboarding=false]
+[02:05:48]: Setting IDE system property: [freeze.reporter.profiling=false]
+[02:05:48]: Setting IDE system property: [idea.fatal.error.notification=true]
+[02:05:48]: Setting IDE system property: [idea.is.integration.test=true]
+[02:05:48]: Setting IDE system property: [ide.browser.jcef.jsQueryPoolSize=10000]
+[02:05:48]: Setting IDE system property: [ide.performance.screenshot=heartbeat]
+[02:05:48]: Setting IDE system property: [idea.diagnostic.opentelemetry.metrics.max-files-to-keep=120]
+[02:05:48]: No profiler is specified.
+[02:05:48]: Setting IDE system property: [snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\snapshots]
+[02:05:48]: Setting IDE system property: [java.rmi.server.hostname=127.0.0.1]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote.host=127.0.0.1]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote=true]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote.port=7777]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote.authenticate=false]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote.ssl=false]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote.serial.filter.pattern='java.**;javax.**;com.intellij.driver.model.**']
+[02:05:48]: Setting IDE system property: [expose.ui.hierarchy.url=true]
+[02:05:48]: Setting IDE system property: [platform.experiment.ab.manual.option=control.option]
+[02:05:48]: Setting IDE system property: [rpc.port=11111]
+[02:05:48]: Setting IDE system property: [memory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log]
+[02:05:48]: Setting IDE system property: [idea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log\opentelemetry.json]
+[02:05:48]: Setting IDE system property: [idea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log]
+[02:05:48]: Test commands to be executed: 
+
+[02:05:48]: Setting IDE system property: [testscript.filename=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\system\newFileFromTemplateUsesTemplateBody.text]
+[02:05:48]: Setting IDE system property: [testscript.must.exist.process.with.non.success.code.on.ide.error=true]
+[02:05:48]: Write vmoptions patch to V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65.vmoptions
+[02:05:48]: Starting IDE for newFileFromTemplateUsesTemplateBody with timeout 10m
+  VM Options: [VMOptions{ env={} -Dij.load.shell.env=false -Dide.instant.shutdown=false -Dfeature.usage.event.log.send.on.ide.close=false -Dlinux.native.menu.force.disable=true -Djdk.gtk.verbose=true -Dvcs.log.index.enable=false -Dide.slow.operations.assertion=false -DintegrationTests.profiler=async -Didea.config.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\config -Didea.system.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\system -Didea.plugins.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\plugins -Didea.local.statistics.without.report=true -Didea.updates.url=http://127.0.0.1 -Dkotest.assertions.collection.enumerate.size=2147483647 -Dide.enable.notification.trace.data.sharing=false -Djb.consents.confirmation.enabled=false -Djb.privacy.policy.text=<!--999.999--> -Djb.privacy.policy.ai.assistant.text=<!--999.999--> -Dmarketplace.eula.reviewed.and.accepted=true -Dwriterside.eula.reviewed.and.accepted=true -Dide.newUsersOnboarding=false -Dfreeze.reporter.profiling=false -Didea.fatal.error.notification=true -Didea.is.integration.test=true -Dide.browser.jcef.jsQueryPoolSize=10000 -Dide.performance.screenshot=heartbeat -XX:ErrorFile=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log\jvm-crash\java_error_in_idea_%p.log -XX:HeapDumpPath=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log\heap-dump\heap-dump.hprof -Xlog:gc*:file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\reports\gcLog.log -Didea.diagnostic.opentelemetry.metrics.max-files-to-keep=120 -Dsnapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\snapshots -Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote.host=127.0.0.1 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7777 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.serial.filter.pattern='java.**;javax.**;com.intellij.driver.model.**' -Dexpose.ui.hierarchy.url=true -Dplatform.experiment.ab.manual.option=control.option -Drpc.port=11111 -Dmemory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log -Didea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log\opentelemetry.json -Didea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log -Dtestscript.filename=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\system\newFileFromTemplateUsesTemplateBody.text -Dtestscript.must.exist.process.with.non.success.code.on.ide.error=true } // VMOptions ]
+  On Java : [C:\Users\<you>\.jdks\jdk-21.0.11+10]
+
+[02:05:48]: Starting external process for `run-ide-newFileFromTemplateUsesTemplateBody`
+  Working directory: V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65
+  Arguments: [V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\bin\idea64.exe V:\JB Automation Test\intellij-file-templates-ui-tests\build\test-fixtures\sample-project-1784376346385]
+  STDOUT will be redirected to: string. STDERR will be redirected to: stdout. STDIN is empty: true
+
+[02:05:48]:   ... started external process `run-ide-newFileFromTemplateUsesTemplateBody` with process ID = 37584
+[14:05:48]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - Unsubscribing com.intellij.ide.starter.driver.engine.DriverWithDetailedLogging@340c5fb6 for IdeLaunchEvent
+[14:05:48]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - Unsubscribing CompletableDeferredImpl{Active}@322b09da for IdeLaunchEvent
+[14:05:48]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [19] PostAndWait start for IdeLaunchEvent: total=2, sequential=0, parallel=2
+[02:05:48]: Setting IDE system property: [jb.consents.confirmation.enabled=false]
+[02:05:48]: Setting IDE system property: [jb.privacy.policy.text=<!--999.999-->]
+[02:05:48]: Setting IDE system property: [jb.privacy.policy.ai.assistant.text=<!--999.999-->]
+[02:05:48]: Setting IDE system property: [marketplace.eula.reviewed.and.accepted=true]
+[02:05:48]: Setting IDE system property: [writerside.eula.reviewed.and.accepted=true]
+[02:05:48]: Setting IDE system property: [ide.newUsersOnboarding=false]
+[02:05:48]: Setting IDE system property: [freeze.reporter.profiling=false]
+[02:05:48]: Setting IDE system property: [idea.fatal.error.notification=true]
+[02:05:48]: Setting IDE system property: [idea.is.integration.test=true]
+[02:05:48]: Setting IDE system property: [ide.browser.jcef.jsQueryPoolSize=10000]
+[02:05:48]: Setting IDE system property: [ide.performance.screenshot=heartbeat]
+[02:05:48]: Setting IDE system property: [idea.diagnostic.opentelemetry.metrics.max-files-to-keep=120]
+[02:05:48]: No profiler is specified.
+[02:05:48]: Setting IDE system property: [snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\snapshots]
+[02:05:48]: Setting IDE system property: [java.rmi.server.hostname=127.0.0.1]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote.host=127.0.0.1]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote=true]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote.port=7777]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote.authenticate=false]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote.ssl=false]
+[02:05:48]: Setting IDE system property: [com.sun.management.jmxremote.serial.filter.pattern='java.**;javax.**;com.intellij.driver.model.**']
+[02:05:48]: Setting IDE system property: [expose.ui.hierarchy.url=true]
+[02:05:48]: Setting IDE system property: [platform.experiment.ab.manual.option=control.option]
+[02:05:48]: Setting IDE system property: [rpc.port=11111]
+[02:05:48]: Setting IDE system property: [memory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log]
+[02:05:48]: Setting IDE system property: [idea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log\opentelemetry.json]
+[02:05:48]: Setting IDE system property: [idea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log]
+[02:05:48]: Setting IDE system property: [memory.snapshots.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log]
+[02:05:48]: Setting IDE system property: [idea.diagnostic.opentelemetry.file=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log\opentelemetry.json]
+[02:05:48]: Setting IDE system property: [idea.log.path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\log]
+[02:05:48]: Test commands to be executed: 
+
+[02:05:48]: Setting IDE system property: [testscript.filename=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\tests\IU-261.26222.65\newFileFromTemplateUsesTemplateBody\system\newFileFromTemplateUsesTemplateBody.text]
+[02:05:48]: Setting IDE system property: [testscript.must.exist.process.with.non.success.code.on.ide.error=true]
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:49,298 [    316]   WARN - #c.i.i.p.PluginManager - Problems found loading plugins:
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Refactor-X' (Refactor-X) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Cron Expressions' (com.intellij.cron) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Apache Velocity' (com.intellij.velocity) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'FTP/SFTP/WebDAV Connectivity' (com.jetbrains.plugins.webDeployment) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'SSH Remote Run' (org.jetbrains.plugins.remote-run) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'WSL Support Framework' (org.jetbrains.plugins.wsl.remoteSdk) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'In-Editor Performance Hints' (com.intellij.LineProfiler) requires plugin with id=com.intellij.modules.ultimate to be enabled
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Spring Messaging' (com.intellij.spring.messaging) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Spring Modulith' (com.intellij.spring.modulith) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Spring Cloud' (com.intellij.spring.cloud) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Spring Security' (com.intellij.spring.security) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Spring Integration Patterns' (com.intellij.spring.integration) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Jakarta EE: RESTful Web Services (JAX-RS)' (com.jetbrains.restWebServices) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Jakarta EE: Messaging (JMS)' (com.intellij.javaee.extensions) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Jakarta EE: Contexts and Dependency Injection (CDI)' (com.intellij.cdi) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Jakarta EE: Bean Validation' (com.intellij.beanValidation) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'FreeMarker' (com.intellij.freemarker) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'AOP Pointcut Language' (com.intellij.aop) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Remote Development Gateway' (com.jetbrains.gateway) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'JVM Persistence Frameworks' (com.intellij.persistence) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Quarkus' (com.intellij.quarkus) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Micronaut' (com.intellij.micronaut) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Jakarta EE: Persistence (JPA)' (com.intellij.javaee.jpa) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Spring Data' (com.intellij.spring.data) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Reverse Engineering' (com.intellij.javaee.reverseEngineering) requires plugin with id=com.intellij.javaee.jpa to be enabled
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Jakarta EE: Data' (com.intellij.javaee.jakarta.data) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Jakarta EE: Application Servers' (com.intellij.javaee.app.servers.integration) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Tomcat and TomEE' (Tomcat) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'WildFly' (JBoss) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Hibernate' (com.intellij.hibernate) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Time Tracking' (com.intellij.tasks.timeTracking) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Sass' (org.jetbrains.plugins.sass) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Jakarta EE: Web/Servlets' (com.intellij.javaee.web) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Jakarta EE: Server Pages (JSP)' (com.intellij.jsp) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'PostCSS' (org.intellij.plugins.postcss) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Less' (org.jetbrains.plugins.less) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'JavaScript Debugger' (JavaScriptDebugger) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Spring Web' (com.intellij.spring.mvc) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Tailwind CSS' (com.intellij.tailwindcss) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Styled Components & Styled JSX' (com.deadlock.scsyntax) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Node.js' (NodeJS) requires plugin with id=JavaScriptDebugger to be enabled
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Node.js Remote Interpreter' (org.jetbrains.plugins.node-remote-interpreter) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Next.js' (intellij.nextjs) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Karma' (Karma) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Kubernetes' (com.intellij.kubernetes) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err]   Plugin 'Dev Containers' (org.jetbrains.plugins.docker.gateway) has dependency on 'JetBrains Ultimate' which cannot be loaded
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:49,321 [    339]   WARN - #c.i.p.instanceContainer - InstanceNotOverridableException: Override failed for com.intellij.openapi.project.impl.ProjectStoreFactory: com.intellij.configurationScript.providers.ConfigurationScriptProjectStoreFactory attempts to override com.intellij.configurationStore.PlatformLangProjectStoreFactory, but the existing implementation is not overriddable (not declared as 'open=true')
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:49,325 [    343]   WARN - #c.i.p.instanceContainer - InstanceNotOverridableException: Override failed for com.intellij.modcommand.ModCommandExecutor: com.jetbrains.rdserver.ui.intentions.RemoteModCommandExecutor attempts to override com.intellij.lang.impl.modcommand.ModCommandExecutorImpl, but the existing implementation is not overriddable (not declared as 'open=true')
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err] WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err] WARNING: sun.misc.Unsafe::allocateMemory has been called by io.netty.util.internal.PlatformDependent0$2
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err] WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$2
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err] WARNING: sun.misc.Unsafe::allocateMemory will be removed in a future release
+[02:05:49]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:49,573 [    591]   WARN - #c.i.s.c.i.StationSocketConnectionLoop - Discovery connection failed with AnnotatedConnectException(ConnectException) (Connection refused: connect: C:\Users\<you>\Temp\jb.station.<you>.sock)
+[02:05:51]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:51,022 [   2040]   WARN - #c.i.s.c.i.StationSocketConnectionLoop - RecentProjects connection failed with AnnotatedConnectException(ConnectException) (Connection refused: connect: C:\Users\<you>\Temp\jb.station.<you>.sock)
+[02:05:51]: ?[35mUI Hierarchy: http://localhost:11111/api/remote-driver/?[0m
+[14:05:51]: INFO - com.intellij.tools.ide.starter.bus.local.LocalEventsFlow - [19] PostAndWait finished for IdeLaunchEvent. Exceptions: []
+[02:05:51]: Creating reports dir 'monitoring-thread-dumps-ide'
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.spring.aop) <- PluginMainDescriptor(name=Spring, id=com.intellij.spring, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\Spring)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=AOP Pointcut Language, id=com.intellij.aop, version=261.26222.65, package=com.intellij.aop, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\aopCommon)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.spring.web) <- PluginMainDescriptor(name=Spring, id=com.intellij.spring, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\Spring)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=Jakarta EE: Web/Servlets, id=com.intellij.javaee.web, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\JavaeeWeb)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.spring.persistence) <- PluginMainDescriptor(name=Spring, id=com.intellij.spring, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\Spring)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=JVM Persistence Frameworks, id=com.intellij.persistence, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\javaee-persistence-impl)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.spring.persistence.jpa) <- PluginMainDescriptor(name=Spring, id=com.intellij.spring, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\Spring)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = ContentModuleDescriptor(id=intellij.spring.persistence) <- PluginMainDescriptor(name=Spring, id=com.intellij.spring, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\Spring)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.spring.persistence.hibernate) <- PluginMainDescriptor(name=Spring, id=com.intellij.spring, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\Spring)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = ContentModuleDescriptor(id=intellij.spring.persistence) <- PluginMainDescriptor(name=Spring, id=com.intellij.spring, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\Spring)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.thymeleaf.paid) <- PluginMainDescriptor(name=Thymeleaf, id=com.intellij.thymeleaf, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\thymeleaf-plugin)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=Jakarta EE: Web/Servlets, id=com.intellij.javaee.web, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\JavaeeWeb)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.javaee.application.maven, package=com.intellij.javaee.application.maven) <- PluginMainDescriptor(name=Jakarta EE Platform, id=com.intellij.javaee, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\JavaEE)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=Jakarta EE: Web/Servlets, id=com.intellij.javaee.web, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\JavaeeWeb)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.webDeployment.transport, package=com.jetbrains.plugins.webDeployment.transport) <- PluginMainDescriptor(name=Jakarta EE Platform, id=com.intellij.javaee, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\JavaEE)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=FTP/SFTP/WebDAV Connectivity, id=com.jetbrains.plugins.webDeployment, version=261.26222.65, package=com.jetbrains.plugins.webDeployment, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\webDeployment)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.spring.kotlin) <- PluginMainDescriptor(name=Spring, id=com.intellij.spring, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\Spring)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=Spring Web, id=com.intellij.spring.mvc, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\spring-mvc-impl)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.vuejs.backend) <- PluginMainDescriptor(name=Vue.js, id=org.jetbrains.plugins.vue, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\vuejs-plugin)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=PostCSS, id=org.intellij.plugins.postcss, version=261.26222.65, package=org.intellij.plugins.postcss, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\postcss)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:58,405 [   9423]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.jupyter.py.pro) <- PluginMainDescriptor(name=Jupyter, id=intellij.jupyter, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\jupyter-plugin)
+[02:05:58]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = ContentModuleDescriptor(id=intellij.jupyter.py.psi) <- PluginMainDescriptor(name=Jupyter, id=intellij.jupyter, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\jupyter-plugin)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:59,380 [  10398]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.jupyter.py.wsl) <- PluginMainDescriptor(name=Jupyter, id=intellij.jupyter, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\jupyter-plugin)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = ContentModuleDescriptor(id=intellij.jupyter.py) <- PluginMainDescriptor(name=Jupyter, id=intellij.jupyter, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\jupyter-plugin)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:59,399 [  10417]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.ml.llm.css.sass.completion, package=com.intellij.ml.llm.css.sass.completion.cloud) <- PluginMainDescriptor(name=Full Line Code Completion, id=org.jetbrains.completion.full.line, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\fullLine)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = ContentModuleDescriptor(id=intellij.ml.llm.css.completion, package=com.intellij.ml.llm.css.completion.cloud) <- PluginMainDescriptor(name=Full Line Code Completion, id=org.jetbrains.completion.full.line, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\fullLine)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:59,417 [  10435]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.ml.llm.css.postcss.completion, package=com.intellij.ml.llm.css.postcss.completion.cloud) <- PluginMainDescriptor(name=Full Line Code Completion, id=org.jetbrains.completion.full.line, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\fullLine)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = ContentModuleDescriptor(id=intellij.ml.llm.css.completion, package=com.intellij.ml.llm.css.completion.cloud) <- PluginMainDescriptor(name=Full Line Code Completion, id=org.jetbrains.completion.full.line, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\fullLine)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:59,457 [  10475]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.ml.llm.css.less.completion, package=com.intellij.ml.llm.css.less.completion.cloud) <- PluginMainDescriptor(name=Full Line Code Completion, id=org.jetbrains.completion.full.line, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\fullLine)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = ContentModuleDescriptor(id=intellij.ml.llm.css.completion, package=com.intellij.ml.llm.css.completion.cloud) <- PluginMainDescriptor(name=Full Line Code Completion, id=org.jetbrains.completion.full.line, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\fullLine)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:59,470 [  10488]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=kotlin-ultimate.javascript.nodeJs, package=org.jetbrains.kotlin.idea.ultimate.nodejs) <- PluginMainDescriptor(name=Kotlin, id=org.jetbrains.kotlin, version=261.26222.65-IJ, package=org.jetbrains.kotlin, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\Kotlin)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=Node.js, id=NodeJS, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\nodeJS)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:59,607 [  10625]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.thymeleaf.spring.security) <- PluginMainDescriptor(name=Thymeleaf, id=com.intellij.thymeleaf, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\thymeleaf-plugin)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = ContentModuleDescriptor(id=intellij.thymeleaf.paid) <- PluginMainDescriptor(name=Thymeleaf, id=com.intellij.thymeleaf, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\thymeleaf-plugin)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:59,723 [  10741]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.flyway.jpa) <- PluginMainDescriptor(name=Flyway, id=com.intellij.flyway, version=261.26222.65, package=com.intellij.flyway, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\flyway)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=Jakarta EE: Persistence (JPA), id=com.intellij.javaee.jpa, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\JPA)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:59,723 [  10741]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.liquibase.jpa) <- PluginMainDescriptor(name=Liquibase, id=com.intellij.liquibase, version=261.26222.65, package=com.intellij.liquibase, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\liquibase)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=Jakarta EE: Persistence (JPA), id=com.intellij.javaee.jpa, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\JPA)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:59,756 [  10774]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.quarkus.hibernate, package=com.intellij.quarkus.hibernate) <- PluginMainDescriptor(name=Quarkus, id=com.intellij.quarkus, version=261.26222.65, package=com.intellij.quarkus, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\quarkus)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=Hibernate, id=com.intellij.hibernate, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\hibernate)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:05:59,756 [  10774]   WARN - #c.i.i.p.ClassLoaderConfigurator - content module's dependency's classloader is not configured:
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] content module = ContentModuleDescriptor(id=intellij.spring.boot.jpa) <- PluginMainDescriptor(name=Spring Boot, id=com.intellij.spring.boot, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\spring-boot-plugin)
+[02:05:59]:   [ide-newFileFromTemplateUsesTemplateBody-err] dependency module = PluginMainDescriptor(name=Hibernate, id=com.intellij.hibernate, version=261.26222.65, isBundled=true, path=V:\JB Automation Test\intellij-file-templates-ui-tests\out\ide-tests\cache\builds\IU-261.26222.65\plugins\hibernate)
+[02:06:01]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:01,788 [  12806]   WARN - #c.i.u.j.JBCefApp - CEF version 137.0.17+gf354b0e+chromium-137.0.7151.104 doesn't match the launcher version 122.1.9+gd14e051+chromium-122.0.6261.94
+[02:06:02]:   [ide-newFileFromTemplateUsesTemplateBody-err] WARNING: A restricted method in java.lang.System has been called
+[02:06:02]:   [ide-newFileFromTemplateUsesTemplateBody-err] WARNING: java.lang.System::loadLibrary has been called by com.jetbrains.cef.JCefAppConfig$6 in module jcef (jrt:/jcef)
+[02:06:02]:   [ide-newFileFromTemplateUsesTemplateBody-err] WARNING: Use --enable-native-access=jcef to avoid a warning for callers in this module
+[02:06:02]:   [ide-newFileFromTemplateUsesTemplateBody-err] WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+[02:06:02]:   [ide-newFileFromTemplateUsesTemplateBody-err] 
+Step 'Invoke action Settings…' is started
+Step 'Invoke action Settings…' is finished
+[02:06:12]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:12,444 [  23462]   WARN - #c.i.o.o.e.ConfigurableExtensionPointUtil - ignore deprecated groupId: language for id: preferences.language.Kotlin.scripting
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Background.Default.Dark is deprecated for new UI themes, use Checkbox.Background.Default instead
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Border.Default.Dark is deprecated for new UI themes, use Checkbox.Border.Default instead
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Border.Selected.Dark is deprecated for new UI themes, use Checkbox.Border.Selected instead
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Foreground.Selected.Dark is deprecated for new UI themes, use Checkbox.Foreground.Selected instead
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Focus.Wide.Dark is deprecated for new UI themes, use Checkbox.Focus.Wide instead
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: color key Checkbox.Focus.Thin.Default.Dark is not supported and therefore ignored
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: color key Checkbox.Focus.Thin.Selected.Dark is not supported and therefore ignored
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Background.Disabled.Dark is deprecated for new UI themes, use Checkbox.Background.Disabled instead
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Background.Selected.Dark is deprecated for new UI themes, use Checkbox.Background.Selected instead
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Border.Disabled.Dark is deprecated for new UI themes, use Checkbox.Border.Disabled instead
+[02:06:13]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:13,021 [  24039]   WARN - #c.i.i.u.UiThemePaletteCheckBoxScope - Theme Islands Darcula: Checkbox.Foreground.Disabled.Dark is deprecated for new UI themes, use Checkbox.Foreground.Disabled instead
+Step 'Set text 'Hello ${NAME}'' is started
+Step 'Set text 'Hello ${NAME}'' is finished
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:18,196 [  29214] SEVERE - #c.i.p.a.c.ProfilerRunConfigurationsManager - Can't write state 'displayName = JVM DTrace based profiler nativeAgentPath = null (default) settings = executablePath = null (default) samplingFrequency = 997 (default) defaultCmdArgs = -q outputDirectory = null (default) deleteOutputOnExit =  processInlineFunctions = ', of type 'JVMDTraceProfilerConfiguration'. Available configuration types: [com.intellij.profiler.ultimate.configurations.IntellijProfilerConfigurationType@6c5519d1, com.intellij.profiler.ultimate.async.configurations.AsyncProfilerCPUConfigurationType@790cd19d, com.intellij.profiler.ultimate.async.configurations.AsyncProfilerMemoryConfigurationType@5cc9eefd, com.intellij.profiler.ultimate.async.configurations.AsyncProfilerConfigurationType@713e58e2, com.intellij.profiler.ultimate.async.configurations.WinAsyncProfilerConfigurationType@35e14c85, com.intellij.profiler.ultimate.jfr.configuration.JFRConfigurationType@39534e29]
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] java.lang.Throwable: Can't write state 'displayName = JVM DTrace based profiler nativeAgentPath = null (default) settings = executablePath = null (default) samplingFrequency = 997 (default) defaultCmdArgs = -q outputDirectory = null (default) deleteOutputOnExit =  processInlineFunctions = ', of type 'JVMDTraceProfilerConfiguration'. Available configuration types: [com.intellij.profiler.ultimate.configurations.IntellijProfilerConfigurationType@6c5519d1, com.intellij.profiler.ultimate.async.configurations.AsyncProfilerCPUConfigurationType@790cd19d, com.intellij.profiler.ultimate.async.configurations.AsyncProfilerMemoryConfigurationType@5cc9eefd, com.intellij.profiler.ultimate.async.configurations.AsyncProfilerConfigurationType@713e58e2, com.intellij.profiler.ultimate.async.configurations.WinAsyncProfilerConfigurationType@35e14c85, com.intellij.profiler.ultimate.jfr.configuration.JFRConfigurationType@39534e29]
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.diagnostic.Logger.error(Logger.java:375)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.profiler.api.configurations.ProfilerRunConfigurationsManager.writeConfigurationSafely(ProfilerRunConfigurationsManager.kt:192)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.profiler.api.configurations.ProfilerRunConfigurationsManager.writeConfigurationSafely$default(ProfilerRunConfigurationsManager.kt:182)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.profiler.api.configurations.ProfilerRunConfigurationsManager.getState(ProfilerRunConfigurationsManager.kt:49)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.profiler.api.configurations.ProfilerRunConfigurationsManager.getState(ProfilerRunConfigurationsManager.kt:22)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.configurationStore.ComponentStoreImplKt.getStateForComponent$lambda$0(ComponentStoreImpl.kt:906)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.InternalReadAction.insideReadAction(InternalReadAction.kt:119)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.InternalReadAction.tryReadCancellable$lambda$0(InternalReadAction.kt:109)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.CancellableReadActionKt.cancellableReadActionInternal$lambda$0$0$0(cancellableReadAction.kt:32)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.AppImplKt$runnableUnitFunction$1.invoke(appImpl.kt:124)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.AppImplKt$runnableUnitFunction$1.invoke(appImpl.kt:124)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.platform.locking.impl.NestedLocksThreadingSupport.tryRunReadAction(NestedLocksThreadingSupport.kt:900)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.tryRunReadAction(ApplicationImpl.java:1266)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.CancellableReadActionKt.cancellableReadActionInternal$lambda$0$0(cancellableReadAction.kt:30)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.progress.util.ProgressIndicatorUtilService.runActionAndCancelBeforeWrite(ProgressIndicatorUtilService.java:73)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.progress.util.ProgressIndicatorUtils.runActionAndCancelBeforeWrite(ProgressIndicatorUtils.java:168)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.CancellableReadActionKt.cancellableReadActionInternal$lambda$0(cancellableReadAction.kt:28)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.concurrency.ThreadContext.installThreadContext(threadContext.kt:305)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.concurrency.ThreadContext.installThreadContext$default(threadContext.kt:303)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.CancellableReadActionKt.cancellableReadActionInternal(cancellableReadAction.kt:24)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.InternalReadAction.tryReadCancellable(InternalReadAction.kt:108)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.InternalReadAction.tryReadAction(InternalReadAction.kt:94)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.InternalReadAction.readLoop(InternalReadAction.kt:81)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.InternalReadAction.access$readLoop(InternalReadAction.kt:23)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.InternalReadAction$runReadAction$6.invokeSuspend(InternalReadAction.kt:60)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.InternalReadAction$runReadAction$6.invoke(InternalReadAction.kt)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.InternalReadAction$runReadAction$6.invoke(InternalReadAction.kt)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.intrinsics.UndispatchedKt.startUndspatched(Undispatched.kt:67)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.intrinsics.UndispatchedKt.startUndispatchedOrReturn(Undispatched.kt:43)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.BuildersKt__Builders_commonKt.withContext(Builders.common.kt:165)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.BuildersKt.withContext(Unknown Source)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.InternalReadAction.runReadAction(InternalReadAction.kt:58)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.rw.PlatformReadWriteActionSupport.executeReadAction(PlatformReadWriteActionSupport.kt:75)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.ReadWriteActionSupport.executeReadAction$default(ReadWriteActionSupport.kt:15)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.CoroutinesKt.constrainedReadAction(coroutines.kt:66)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.CoroutinesKt.readAction(coroutines.kt:31)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.configurationStore.ComponentStoreImplKt.getStateForComponent(ComponentStoreImpl.kt:906)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.configurationStore.ComponentStoreImpl.commitComponent(ComponentStoreImpl.kt:475)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.configurationStore.ComponentStoreImpl.commitComponents$suspendImpl(ComponentStoreImpl.kt:363)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.configurationStore.ComponentStoreImpl.commitComponents$intellij_platform_configurationStore_impl(ComponentStoreImpl.kt)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.configurationStore.ComponentStoreWithExtraComponents.commitComponents$intellij_platform_configurationStore_impl(ComponentStoreWithExtraComponents.kt:95)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.configurationStore.ComponentStoreWithExtraComponents.saveSettingsAndCommitComponents$intellij_platform_configurationStore_impl(ComponentStoreWithExtraComponents.kt:87)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.configurationStore.ComponentStoreWithExtraComponents$saveSettingsAndCommitComponents$1.invokeSuspend(ComponentStoreWithExtraComponents.kt)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:610)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runDefaultDispatcherTask(CoroutineScheduler.kt:1194)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:906)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:775)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:762)
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:18,196 [  29214] SEVERE - #c.i.p.a.c.ProfilerRunConfigurationsManager - IntelliJ IDEA 2026.1.4  Build #IU-261.26222.65
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:18,196 [  29214] SEVERE - #c.i.p.a.c.ProfilerRunConfigurationsManager - JDK: 25.0.3; VM: OpenJDK 64-Bit Server VM; Vendor: JetBrains s.r.o.
+[02:06:18]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:18,196 [  29214] SEVERE - #c.i.p.a.c.ProfilerRunConfigurationsManager - OS: Windows 11
+[02:06:21]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:21,495 [  32513]   WARN - #c.j.p.r.r.SmoothRobot - Click was unsuccessful on Project com.intellij.ide.projectView.impl.ProjectViewPane$MyProjectViewTree[,0,0,936x877,alignmentX=0.0,alignmentY=0.0,border=ViewBorder{myInsets=com.intellij.util.ui.JBInsets[top=4,left=12,bottom=18,right=12], myBorder=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@28a77c86},flags=50331936,maximumSize=,minimumSize=,preferredSize=,editable=false,invokesStopCellEditing=false,largeModel=true,rootVisible=false,rowHeight=24,scrollsOnExpand=true,showsRootHandles=true,toggleClickCount=2,visibleRowCount=20]
+[02:06:24]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:24,337 [  35355]   WARN - org.apache.velocity.deprecation - configuration key 'resource.loader' has been deprecated in favor of 'resource.loaders'
+[02:06:24]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:24,337 [  35355]   WARN - org.apache.velocity.deprecation - configuration key 'includes.resource.loader.instance' has been deprecated in favor of 'resource.loader.includes.instance'
+Step 'Type text 'GeneratedFromTemplate'' is started
+Step 'Type text 'GeneratedFromTemplate'' is finished
+[02:06:29]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:29,831 [  40849]   WARN - #c.i.p.a.c.ProfilerRunConfigurationsManager - Suppressed a frequent exception logged for the 2nd time: Can't write state 'displayName = JVM DTrace based profiler nativeAgentPath = null (default) settings = executablePath = null (default) samplingFrequency = 997 (default) defaultCmdArgs = -q outputDirectory = null (default) deleteOutputOnExit =  processInlineFunctions = ', of type 'JVMDTraceProfile...
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:32,204 [  43222] SEVERE - #c.i.o.u.ObjectTree - CE must not be thrown from a dispose() implementation
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] java.lang.RuntimeException: CE must not be thrown from a dispose() implementation
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.ObjectTree.handleExceptions(ObjectTree.java:243)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.ObjectTree.runWithTrace(ObjectTree.java:169)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.ObjectTree.executeAll(ObjectTree.java:199)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.Disposer.dispose(Disposer.java:217)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.Disposer.dispose(Disposer.java:205)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.serviceContainer.ComponentManagerImpl.dispose(ComponentManagerImpl.kt:1261)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.project.impl.DefaultProjectImpl.dispose(DefaultProject.kt:307)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.ObjectTree.runWithTrace(ObjectTree.java:158)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.ObjectTree.executeAll(ObjectTree.java:199)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.Disposer.dispose(Disposer.java:217)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.Disposer.dispose(Disposer.java:205)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.project.impl.ProjectManagerImpl.dispose(ProjectManagerImpl.kt:262)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.ObjectTree.runWithTrace(ObjectTree.java:158)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.ObjectTree.executeAll(ObjectTree.java:199)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.Disposer.dispose(Disposer.java:217)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.Disposer.dispose(Disposer.java:205)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.serviceContainer.ComponentManagerImpl.dispose(ComponentManagerImpl.kt:1261)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.dispose(ApplicationImpl.java:494)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.ObjectTree.runWithTrace(ObjectTree.java:158)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.ObjectTree.executeAll(ObjectTree.java:199)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.Disposer.dispose(Disposer.java:217)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.Disposer.dispose(Disposer.java:205)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.lambda$disposeContainer$5(ApplicationImpl.java:326)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.AppImplKt$runnableUnitFunction$1.invoke(appImpl.kt:124)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.AppImplKt$runnableUnitFunction$1.invoke(appImpl.kt:124)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.platform.locking.impl.NestedLocksThreadingSupport.runWriteActionBlocking(NestedLocksThreadingSupport.kt:997)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.runWriteAction(ApplicationImpl.java:1161)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.disposeContainer(ApplicationImpl.java:324)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.destructApplication(ApplicationImpl.java:892)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.doExit(ApplicationImpl.java:788)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.exit(ApplicationImpl.java:773)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.exit(ApplicationImpl.java:742)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.exit(ApplicationImpl.java:747)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.driver.impl.Invoker.lambda$exit$0(Invoker.java:129)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.TransactionGuardImpl.runWithWritingAllowed(TransactionGuardImpl.java:236)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.TransactionGuardImpl.access$100(TransactionGuardImpl.java:22)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.TransactionGuardImpl$1.run(TransactionGuardImpl.java:198)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.AppImplKt$runnableUnitFunction$1.invoke(appImpl.kt:124)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.AppImplKt$runnableUnitFunction$1.invoke(appImpl.kt:124)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.platform.locking.impl.NestedLocksThreadingSupport.runWriteIntentReadAction(NestedLocksThreadingSupport.kt:705)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl.runIntendedWriteActionOnCurrentThread(ApplicationImpl.java:1094)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl$7.lambda$run$0(ApplicationImpl.java:648)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.concurrency.ThreadContext.installThreadContext(threadContext.kt:305)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.ApplicationImpl$7.run(ApplicationImpl.java:646)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.util.concurrency.ChildContext$runInChildContext$1.invoke(propagation.kt:192)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.util.concurrency.ChildContext$runInChildContext$1.invoke(propagation.kt:192)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.util.concurrency.ChildContext.runInChildContext(propagation.kt:198)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.util.concurrency.ChildContext.runInChildContext(propagation.kt:192)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.util.concurrency.ContextRunnable.lambda$run$0(ContextRunnable.java:26)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.concurrency.ThreadContext.resetThreadContext(threadContext.kt:294)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.util.concurrency.ContextRunnable.run(ContextRunnable.java:25)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.NonBlockingFlushQueue.runNextEvent$lambda$1$1$0(NonBlockingFlushQueue.kt:334)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.progress.impl.CoreProgressManager.computePrioritized(CoreProgressManager.java:928)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.NonBlockingFlushQueue.runNextEvent$lambda$1$1(NonBlockingFlushQueue.kt:333)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.concurrency.ThreadContext.resetThreadContext(threadContext.kt:294)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.NonBlockingFlushQueue.runNextEvent$lambda$1(NonBlockingFlushQueue.kt:330)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.platform.locking.impl.NestedLocksThreadingSupport.tryRunWriteIntentReadAction(NestedLocksThreadingSupport.kt:747)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.NonBlockingFlushQueue.runNextEvent(NonBlockingFlushQueue.kt:326)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.NonBlockingFlushQueue.flushNow(NonBlockingFlushQueue.kt:305)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.impl.NonBlockingFlushQueue.FLUSH_NOW$lambda$0(NonBlockingFlushQueue.kt:167)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:323)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:732)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:711)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.ide.IdeEventQueue.defaultDispatchEvent(IdeEventQueue.kt:721)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.ide.IdeEventQueue._dispatchEvent(IdeEventQueue.kt:574)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.ide.IdeEventQueue.dispatchEvent$lambda$0$0$0(IdeEventQueue.kt:378)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.ide.IdeEventQueueKt.performActivity$lambda$0(IdeEventQueue.kt:1111)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.application.TransactionGuardImpl.performActivity(TransactionGuardImpl.java:106)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.ide.IdeEventQueueKt.performActivity(IdeEventQueue.kt:1111)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.ide.IdeEventQueue.dispatchEvent$lambda$0(IdeEventQueue.kt:376)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.kt:416)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:207)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:128)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:117)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:113)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:105)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:92)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] Caused by: com.intellij.serviceContainer.AlreadyDisposedException: Already disposed: Application (containerState DISPOSED)  (WA inProgress allowed) (RA allowed) (exit in progress)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.serviceContainer.ComponentManagerImpl.getMessageBus(ComponentManagerImpl.kt:351)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.docker.runtimes.DockerServerRuntime$Companion.fireServerDisconnected(DockerServerRuntime.kt:358)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.docker.runtimes.DockerServerRuntime$Companion.access$fireServerDisconnected(DockerServerRuntime.kt:349)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.docker.runtimes.DockerServerRuntime.disconnectImpl$intellij_clouds_docker(DockerServerRuntime.kt:177)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.docker.runtimes.DockerServerRuntime$dispose$1.invokeSuspend(DockerServerRuntime.kt:164)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:112)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$BuildersKt__BuildersKt(Builders.kt:87)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:55)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:50)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.docker.runtimes.DockerServerRuntime.dispose(DockerServerRuntime.kt:163)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.openapi.util.ObjectTree.runWithTrace(ObjectTree.java:158)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	... 75 more
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:32,205 [  43223] SEVERE - #c.i.o.u.ObjectTree - IntelliJ IDEA 2026.1.4  Build #IU-261.26222.65
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:32,205 [  43223] SEVERE - #c.i.o.u.ObjectTree - JDK: 25.0.3; VM: OpenJDK 64-Bit Server VM; Vendor: JetBrains s.r.o.
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:32,205 [  43223] SEVERE - #c.i.o.u.ObjectTree - OS: Windows 11
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:32,206 [  43224] SEVERE - #c.i.o.u.ObjectTree - Plugin to blame: Docker version: 261.26222.65
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:32,237 [  43255]   WARN - #c.i.u.n.AppShutdownProxySelector - network access during/after app shutdown
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] java.lang.Throwable
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.util.net.AppShutdownProxySelector.select(JdkProxyProvider.kt:153)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:273)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.base/java.net.Socket.connect(Socket.java:659)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.thrift.transport.TSocket.open(TSocket.java:226)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.isConnectable(NativeServerManager.java:182)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.isRunning(NativeServerManager.java:256)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.isRunning(NativeServerManager.java:238)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.lambda$waitForStopped$8(NativeServerManager.java:418)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.waitFor(NativeServerManager.java:431)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.waitForStopped(NativeServerManager.java:418)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.CefServer.lambda$stop$5(CefServer.java:277)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.base/java.lang.Thread.run(Thread.java:1474)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 2026-07-18 14:06:32,238 [  43256]   WARN - #c.i.u.n.AppShutdownProxySelector - network access during/after app shutdown
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] java.lang.Throwable
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at com.intellij.util.net.AppShutdownProxySelector.select(JdkProxyProvider.kt:153)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:273)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.base/java.net.Socket.connect(Socket.java:659)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.thrift.transport.TSocket.open(TSocket.java:226)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.RpcExecutor.openTcpTransport(RpcExecutor.java:40)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.RpcExecutor.openTransport(RpcExecutor.java:31)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.isRunning(NativeServerManager.java:262)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.isRunning(NativeServerManager.java:238)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.lambda$waitForStopped$8(NativeServerManager.java:418)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.waitFor(NativeServerManager.java:431)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.NativeServerManager.waitForStopped(NativeServerManager.java:418)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at jcef/com.jetbrains.cef.remote.CefServer.lambda$stop$5(CefServer.java:277)
+[02:06:32]:   [ide-newFileFromTemplateUsesTemplateBody-err] 	at java.base/java.lang.Thread.run(Thread.java:1474)
+[02:06:32]:  ... cancelling and waiting for process `"On process run-ide-newFileFromTemplateUsesTemplateBody created job#51":StandaloneCoroutine{Active}@1955e81b` job ... 
+[02:06:33]: IDE run newFileFromTemplateUsesTemplateBody completed in 44.537340600s
+[02:06:33]: Run VM options validation
+[02:06:33]: Finished VM options validation
+##teamcity[testMetadata  type='link' name='Link to Logs and artifacts' value='null' ]
+[02:06:33]: Successfully finished publishArtifacts run for newFileFromTemplateUsesTemplateBody
+[02:06:33]: IDEStartResult(runContext=IDERunContext(testContext=com.intellij.ide.starter.ide.IDETestContext@4e50ae56, commandLine=fun openTestCaseProject(com.intellij.ide.starter.runner.IDERunContext): com.intellij.ide.starter.runner.IDECommandLine, commands=com.intellij.tools.ide.performanceTesting.commands.CommandChain@4824e36f, runTimeout=10m, useStartupScript=true, verboseOutput=false, launchName=, expectedKill=false, expectedExitCode=0, analyzeProcessExit=false, collectNativeThreads=false, stdOut=null), executionTime=44.537340600s, exitCode=0, vmOptionsDiff=VMOptionsDiff(newLines=[], missingLines=[]), failureError=null, frontendStartResult=null)
+[02:06:33]: IDERunContext(testContext=com.intellij.ide.starter.ide.IDETestContext@4e50ae56, commandLine=fun openTestCaseProject(com.intellij.ide.starter.runner.IDERunContext): com.intellij.ide.starter.runner.IDECommandLine, commands=com.intellij.tools.ide.performanceTesting.commands.CommandChain@4824e36f, runTimeout=10m, useStartupScript=true, verboseOutput=false, launchName=, expectedKill=false, expectedExitCode=0, analyzeProcessExit=false, collectNativeThreads=false, stdOut=null)
+[02:06:33]: Performing 'Canceling children of 'Test's supervisor scope': Test `newFileFromTemplateUsesTemplateBody()` execution is finished' with catching all exceptions
+]]></system-out>
+  <system-err><![CDATA[[02:05:01]: There is a problem in detecting git repo root. Trying to acquire working dir path: 'V:\JB Automation Test\intellij-file-templates-ui-tests'
+[02:05:28]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:05:28]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:05:28]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:05:28]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:05:46]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:05:46]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:05:46]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:05:46]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:06:33]: No logic for ignoring test failure has been implemented.
+If you want to ignore tests failures (e.g. on CI) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:06:33]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:06:33]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:06:33]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+[02:06:33]: No logic for publishing artifacts has been implemented.
+If you want to publish artifacts somewhere (e.g. in CI build) - implement [CIServer] interface and register it via KodeinDI as specified in Readme.
+]]></system-err>
+</testsuite>
