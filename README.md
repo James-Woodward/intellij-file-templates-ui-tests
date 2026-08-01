@@ -86,6 +86,7 @@ Most common causes, in the order worth checking:
 | Components time out; screenshot shows another application in front | The session was used during the run — the cursor was moved or another window was clicked |
 | Everything times out on a CI agent | No virtual display: use `xvfb-run -a ./gradlew test` |
 | First run fails while fetching the IDE | No network access to the JetBrains download service |
+| `ZipException: zip file is empty` during setup | A previous run was interrupted and left a half-extracted IDE. IDE Starter reuses that directory rather than re-extracting it, so delete `out/` and run again |
 | `BUILD SUCCESSFUL` but nothing ran | Gradle considered `test` up to date; use `./gradlew cleanTest test` |
 
 ## Versions

@@ -18,7 +18,11 @@ object EnvironmentCheck {
     /** The IDE download is ~1.5 GB and is extracted alongside itself, plus per-test config. */
     private const val REQUIRED_FREE_GB = 5L
 
-    /** Below this the Settings dialog does not fit, and controls end up outside the screen. */
+    /**
+     * Below this the IDE window does not fit and controls end up outside the screen. Measured
+     * against the display's resolution, so a normal laptop screen is not rejected for the space
+     * its menu bar and dock take up.
+     */
     private const val MIN_SCREEN_WIDTH = 1024
     private const val MIN_SCREEN_HEIGHT = 768
 
@@ -44,16 +48,19 @@ object EnvironmentCheck {
             """.trimIndent()
         }
 
-        val screen = GraphicsEnvironment.getLocalGraphicsEnvironment().maximumWindowBounds
+        // The display's own resolution, not the usable work area: the latter excludes the menu
+        // bar and dock, which would reject an ordinary 1280x800 laptop for being "714 high".
+        val screen = GraphicsEnvironment.getLocalGraphicsEnvironment()
+            .defaultScreenDevice.defaultConfiguration.bounds
         check(screen.width >= MIN_SCREEN_WIDTH && screen.height >= MIN_SCREEN_HEIGHT) {
             """
-            The screen is ${screen.width}x${screen.height}, which is smaller than the
+            The display is ${screen.width}x${screen.height}, below the
             ${MIN_SCREEN_WIDTH}x$MIN_SCREEN_HEIGHT these tests need.
 
-            The Settings dialog is laid out larger than that, so some of the controls the tests
-            click would fall outside the visible screen and never be clickable.
-            Use a larger screen or, on CI, a larger virtual display
-            (for example  xvfb-run -a -s "-screen 0 1920x1080x24" ./gradlew test).
+            The IDE window and its Settings dialog do not fit, so controls the tests click end up
+            outside the visible area and can never be reached.
+            Use a larger display or, on CI, a larger virtual one -- the default Xvfb screen is
+            far smaller than this (for example  xvfb-run -a -s "-screen 0 1920x1080x24" ./gradlew test).
             """.trimIndent()
         }
     }
