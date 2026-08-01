@@ -40,7 +40,26 @@ the Welcome screen renders, separating "is the rig sound" from "is the feature w
   under `out/`.
 - Network access on the first run.
 
-Gradle is not required; the wrapper provides it.
+Gradle is not required; the wrapper provides it. A JDK 21 is downloaded automatically if the
+machine does not already have one, so any recent JDK is enough to start the build.
+
+### On macOS: grant Accessibility permission
+
+macOS only lets an application synthesise mouse and keyboard input once it has been granted
+Accessibility permission, and it refuses silently — events are dropped with no error. The IDE
+under test is downloaded into this project, so permission granted to an installed IntelliJ IDEA
+does not apply to it.
+
+Run the suite once, then add the downloaded IDE under
+**System Settings → Privacy & Security → Accessibility** (use `+`, then `Cmd+Shift+G` to paste the
+path):
+
+```
+<project>/out/ide-tests/cache/builds/<build>/IntelliJ IDEA.app
+```
+
+Without it the IDE opens and then nothing happens. The suite checks for this before its first
+click and fails with these instructions rather than reporting a missing component.
 
 The suite checks the display and free disk space before downloading anything, so a machine that
 cannot run GUI tests fails in seconds with an explanation rather than as a UI timeout minutes in.
@@ -87,6 +106,7 @@ Most common causes, in the order worth checking:
 | Everything times out on a CI agent | No virtual display: use `xvfb-run -a ./gradlew test` |
 | First run fails while fetching the IDE | No network access to the JetBrains download service |
 | `ZipException: zip file is empty` during setup | A previous run was interrupted and left a half-extracted IDE. IDE Starter reuses that directory rather than re-extracting it, so delete `out/` and run again |
+| macOS: the IDE opens and nothing happens | Accessibility permission has not been granted to the downloaded IDE — see the macOS section under Requirements |
 | `BUILD SUCCESSFUL` but nothing ran | Gradle considered `test` up to date; use `./gradlew cleanTest test` |
 
 ## Versions
