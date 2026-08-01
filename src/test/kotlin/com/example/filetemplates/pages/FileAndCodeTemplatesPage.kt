@@ -8,6 +8,7 @@ import com.example.filetemplates.support.press
 import com.example.filetemplates.support.raiseOwningWindow
 import com.example.filetemplates.support.selectItem
 import com.example.filetemplates.support.selectPathDirectly
+import com.example.filetemplates.support.useSwingDialogsForMessages
 import com.example.filetemplates.support.withModalDialog
 import com.intellij.driver.client.Driver
 import com.intellij.driver.sdk.invokeAction
@@ -39,6 +40,9 @@ import com.intellij.driver.sdk.ui.ui
  * and the second `press()`.
  */
 class FileAndCodeTemplatesPage(private val driver: Driver) {
+
+    /** What [open] found when it asked for Swing dialogs; reported if a confirmation goes missing. */
+    private var dialogModeNote: String = "not checked"
 
     // ---------------------------------------------------------------- locators
 
@@ -107,6 +111,10 @@ class FileAndCodeTemplatesPage(private val driver: Driver) {
 
     /** Opens Settings and navigates to Editor > File and Code Templates, waiting at each step. */
     fun open() {
+        // Confirmations have to be Swing dialogs for the Driver to reach them at all; on macOS
+        // they are native alerts by default and invisible to it. Harmless elsewhere.
+        dialogModeNote = driver.useSwingDialogsForMessages()
+
         mainWindow.shouldBe("the IDE window should be present") { present() }
         // Raising keeps the IDE visible, which is what makes a failure screenshot worth having.
         // Activating matters more: an inactive window has no focus owner, and IntelliJ reports an
@@ -193,7 +201,12 @@ class FileAndCodeTemplatesPage(private val driver: Driver) {
             openModal = { revertToOriginalButton.performAction() },
             handleDialog = { second ->
                 val confirm = runCatching { second.awaitNewDialogButton(dialogsBefore) }
-                    .getOrElse { error("${it.message}; revert action enabled: $enabledBeforeClick") }
+                    .getOrElse {
+                        error(
+                            "${it.message}; revert action enabled: $enabledBeforeClick; " +
+                                "dialog mode: $dialogModeNote",
+                        )
+                    }
                 confirm.press()
             },
         )

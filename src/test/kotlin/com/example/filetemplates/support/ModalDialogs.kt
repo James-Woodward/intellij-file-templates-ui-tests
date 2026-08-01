@@ -8,6 +8,7 @@ import com.intellij.driver.sdk.ui.accessibleName
 import com.intellij.driver.sdk.ui.components.UiComponent
 import com.intellij.driver.sdk.ui.components.elements.WindowUiComponent
 import com.intellij.driver.sdk.ui.ui
+import com.intellij.ide.starter.ide.IDETestContext
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.concurrent.thread
 
@@ -29,6 +30,53 @@ import kotlin.concurrent.thread
 interface SystemPropertiesRef {
     fun getProperty(key: String): String?
 }
+
+@Remote("com.intellij.openapi.util.registry.Registry")
+interface RegistryRef {
+    fun get(key: String): RegistryValueRef?
+}
+
+@Remote("com.intellij.openapi.util.registry.RegistryValue")
+interface RegistryValueRef {
+    fun asBoolean(): Boolean
+    fun setValue(value: Boolean)
+}
+
+/** Registry key deciding whether macOS confirmations are native sheets rather than Swing dialogs. */
+private const val MAC_SHEETS_KEY = "ide.mac.message.dialogs.as.sheets"
+
+/**
+ * Starts the IDE with confirmations as Swing dialogs rather than native macOS alerts.
+ *
+ * Set before launch, as a system property the registry reads, rather than changed afterwards: the
+ * key only exists on macOS, so reading it at runtime fails outright on other platforms, and the
+ * setting is wanted from the moment the IDE starts. Ignored where it means nothing.
+ */
+fun IDETestContext.preferSwingDialogs(): IDETestContext =
+    applyVMOptionsPatch { addSystemProperty(MAC_SHEETS_KEY, false) }
+
+/**
+ * Asks the IDE to show its confirmations as ordinary Swing dialogs.
+ *
+ * On macOS IntelliJ renders `Messages` confirmations as native alerts. A native alert is not part
+ * of the Swing hierarchy, so it cannot be found, read or dismissed through the Driver at all: the
+ * dialog is plainly on screen while every query reports nothing there, and because it is modal the
+ * IDE cannot then be shut down either. Turning this off makes the same confirmation a Swing dialog,
+ * which is reachable like any other component.
+ *
+ * Returns a description of what happened, for reporting: the key is macOS-only and may be absent or
+ * renamed in a given build, and none of that should stop a run on a platform that never needed it.
+ */
+fun Driver.useSwingDialogsForMessages(): String =
+    runCatching {
+        val value = utility(RegistryRef::class).get(MAC_SHEETS_KEY)
+            ?: return@runCatching "'$MAC_SHEETS_KEY' not present in this build"
+        val before = value.asBoolean()
+        if (before) {
+            withContext(OnDispatcher.EDT) { value.setValue(false) }
+        }
+        "'$MAC_SHEETS_KEY' was $before, now ${value.asBoolean()}"
+    }.getOrElse { "could not read '$MAC_SHEETS_KEY': ${it.message}" }
 
 /**
  * Waits for a button named as one of [names] and returns it.

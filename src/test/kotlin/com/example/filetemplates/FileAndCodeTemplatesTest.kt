@@ -5,6 +5,7 @@ import com.example.filetemplates.pages.NewFileFromTemplatePage
 import com.example.filetemplates.support.IDE_VERSION
 import com.example.filetemplates.support.IdeStarterTestBase
 import com.example.filetemplates.support.createSampleProject
+import com.example.filetemplates.support.preferSwingDialogs
 import com.intellij.driver.sdk.waitForIndicators
 import com.intellij.driver.sdk.waitForProjectOpen
 import com.intellij.driver.sdk.ui.shouldBe
@@ -34,7 +35,7 @@ class FileAndCodeTemplatesTest : IdeStarterTestBase() {
         Starter.newContext(
             "createdTemplateIsSavedAndListed",
             TestCase(IdeProductProvider.IU, projectInfo = NoProject).withVersion(IDE_VERSION),
-        ).runIdeWithDriver().useDriverAndCloseIde {
+        ).preferSwingDialogs().runIdeWithDriver().useDriverAndCloseIde {
             val page = FileAndCodeTemplatesPage(this)
             // Unique name: the IDE config dir is reused between runs, so a fixed name could collide.
             val templateName = "Autotest_" + System.currentTimeMillis()
@@ -74,7 +75,7 @@ class FileAndCodeTemplatesTest : IdeStarterTestBase() {
         Starter.newContext(
             "revertRestoresBuiltInTemplate",
             TestCase(IdeProductProvider.IU, projectInfo = NoProject).withVersion(IDE_VERSION),
-        ).runIdeWithDriver().useDriverAndCloseIde {
+        ).preferSwingDialogs().runIdeWithDriver().useDriverAndCloseIde {
             val page = FileAndCodeTemplatesPage(this)
             val builtInTemplate = "Class"
             val editMarker = "AUTOTEST_EDIT_MARKER"
@@ -125,7 +126,7 @@ class FileAndCodeTemplatesTest : IdeStarterTestBase() {
         Starter.newContext(
             "newFileFromTemplateUsesTemplateBody",
             TestCase(IdeProductProvider.IU, projectInfo = sample.info).withVersion(IDE_VERSION),
-        ).runIdeWithDriver().useDriverAndCloseIde {
+        ).preferSwingDialogs().runIdeWithDriver().useDriverAndCloseIde {
             val settings = FileAndCodeTemplatesPage(this)
             val newFile = NewFileFromTemplatePage(this)
 
