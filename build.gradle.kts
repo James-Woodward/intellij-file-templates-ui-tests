@@ -70,6 +70,22 @@ val openTestReport = tasks.register("openTestReport") {
     }
 }
 
+// Downloads the IDE and reports whatever the machine still needs, without running a test.
+//
+// It exists for macOS, where permission to control the mouse and keyboard is granted per
+// application and so cannot be granted until the IDE has been downloaded. Without this the first
+// run has to fail before it can be fixed, which reads like a broken project rather than the
+// operating system asking for consent.
+val prepare = tasks.register<Test>("prepare") {
+    group = "build setup"
+    description = "Downloads the IDE and prints anything else this machine needs."
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
+    useJUnitPlatform { includeTags("prepare") }
+    testLogging { showStandardStreams = true }
+    outputs.upToDateWhen { false }
+}
+
 tasks.test {
     useJUnitPlatform {
         // SettingsUiExplorer is an investigation tool (it dumps the live Swing tree so locators
@@ -78,6 +94,8 @@ tasks.test {
         if (!project.hasProperty("includeExplore")) {
             excludeTags("explore")
         }
+        // Setup reporting, not a test: only ever run through the `prepare` task above.
+        excludeTags("prepare")
     }
     testLogging {
         events("started", "passed", "failed", "skipped")

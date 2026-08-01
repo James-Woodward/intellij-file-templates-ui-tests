@@ -24,8 +24,9 @@ about two. Four real IDE windows open and close, and the HTML report opens when 
 competing input misdirects them. It does not matter what is on screen when the run starts — the
 suite brings the IDE window to the front itself.
 
-**On macOS, once:** grant the downloaded IDE Accessibility permission, or the operating system will
-silently discard everything the tests do — see [macOS](#macos) below.
+**On macOS, once:** run `./gradlew prepare` first. macOS grants permission to control the mouse and
+keyboard per application, so it cannot be granted until the IDE has been downloaded — `prepare`
+fetches it and prints exactly what to allow. See [macOS](#macos) below.
 
 ## What the tests cover
 
@@ -61,18 +62,26 @@ failing as a UI timeout minutes later.
 
 macOS only allows an application to synthesise mouse and keyboard input once it has been granted
 Accessibility permission, and it refuses silently — the events are discarded with no error. This
-applies to any tool that drives a UI. The IDE under test is downloaded into this project, so
+applies to any tool that drives a UI, and it cannot be granted by a script: only the user, in
+System Settings, or an MDM profile. The IDE under test is downloaded into this project, so
 permission held by an installed IntelliJ IDEA does not cover it.
 
-Run the suite once, then add the downloaded IDE under **System Settings → Privacy & Security →
-Accessibility** (press `+`, then `Cmd+Shift+G` and paste):
+Because the permission is granted per application, the IDE has to exist first:
 
 ```
-<project>/out/ide-tests/cache/builds/<build>/IntelliJ IDEA.app
+./gradlew prepare
 ```
 
-Without it the IDE opens and nothing happens. Rather than let that surface as a component that
-never appeared, the suite checks before its first click and stops with these instructions.
+That downloads the IDE and prints its path. Add it under **System Settings → Privacy & Security →
+Accessibility** — press `+`, then `Cmd+Shift+G`, paste the path, and make sure its switch is on.
+Then `./gradlew test` runs clean the first time.
+
+Without the permission the IDE opens and nothing happens. Rather than let that surface as a
+component that never appeared, the suite checks before its first click and stops with these
+instructions. Deleting `out/` replaces the IDE, and the permission has to be granted again.
+
+Linux and Windows need none of this: there is no equivalent gate on synthetic input, so
+`./gradlew test` is the whole procedure. On CI, Linux under Xvfb needs no setup at all.
 
 ## Running a single test
 
