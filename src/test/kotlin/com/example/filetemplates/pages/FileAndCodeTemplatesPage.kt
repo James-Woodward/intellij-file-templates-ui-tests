@@ -6,6 +6,7 @@ import com.intellij.driver.sdk.invokeAction
 import com.intellij.driver.sdk.ui.components.common.JEditorUiComponent
 import com.intellij.driver.sdk.ui.components.elements.JListUiComponent
 import com.intellij.driver.sdk.ui.components.elements.JTextFieldUI
+import com.intellij.driver.sdk.ui.components.elements.WindowUiComponent
 import com.intellij.driver.sdk.ui.components.elements.accessibleTree
 import com.intellij.driver.sdk.ui.components.elements.list
 import com.intellij.driver.sdk.ui.shouldBe
@@ -24,6 +25,17 @@ import com.intellij.driver.sdk.ui.ui
 class FileAndCodeTemplatesPage(private val driver: Driver) {
 
     // ---------------------------------------------------------------- locators
+
+    /**
+     * The IDE's main window: the project frame, or the Welcome screen when no project is open.
+     *
+     * Matched by either class because two of the three tests run without a project.
+     */
+    private val mainWindow
+        get() = driver.ui.x(
+            "//div[@class='IdeFrameImpl' or @class='FlatWelcomeFrame']",
+            WindowUiComponent::class.java,
+        )
 
     /** The Settings dialog's left-hand category tree. */
     private val settingsCategories
@@ -80,9 +92,16 @@ class FileAndCodeTemplatesPage(private val driver: Driver) {
 
     /** Opens Settings and navigates to Editor > File and Code Templates, waiting at each step. */
     fun open() {
-        // "ShowSettings" works with or without a project open, and is asynchronous, so the
-        // dialog's contents are waited for rather than assumed.
-        driver.invokeAction("ShowSettings")
+        // Raise the IDE first: an action is resolved against a DataContext taken from the focused
+        // window, and a window that is neither focused nor frontmost yields nothing, so
+        // "ShowSettings" reports itself disabled before it ever runs.
+        mainWindow.shouldBe("the IDE window should be present") { present() }
+        mainWindow.raiseOwningWindow()
+
+        // Passing the frame makes the action's context explicit rather than leaving it to whatever
+        // happens to hold focus. "ShowSettings" works with or without a project open, and is
+        // asynchronous, so the dialog's contents are waited for rather than assumed.
+        driver.invokeAction("ShowSettings", component = mainWindow.component)
         settingsCategories.shouldBe("Settings dialog should be open") { present() }
         // Clicks go to whatever is on top at that screen position, so make sure that is the
         // Settings dialog and not some other application that happens to be covering it.

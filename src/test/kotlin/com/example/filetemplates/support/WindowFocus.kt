@@ -41,7 +41,9 @@ interface WindowRef {
  * closed when the test ends.
  */
 fun UiComponent.raiseOwningWindow() {
-    val window = driver.utility(SwingUtilitiesRef::class).getWindowAncestor(component) ?: return
+    // getWindowAncestor returns the window *above* a component, so it is null when the component
+    // already is the window -- as it is for the IDE frame itself. Fall back to the component.
+    val window = driver.utility(SwingUtilitiesRef::class).getWindowAncestor(component) ?: component
     val windowRef = driver.cast(window, WindowRef::class)
     driver.withContext(OnDispatcher.EDT) {
         if (windowRef.isAlwaysOnTopSupported()) {
