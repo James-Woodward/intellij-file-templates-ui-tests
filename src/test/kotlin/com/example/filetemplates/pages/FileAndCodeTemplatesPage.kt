@@ -98,10 +98,14 @@ class FileAndCodeTemplatesPage(private val driver: Driver) {
         mainWindow.shouldBe("the IDE window should be present") { present() }
         mainWindow.raiseOwningWindow()
 
-        // Passing the frame makes the action's context explicit rather than leaving it to whatever
-        // happens to hold focus. "ShowSettings" works with or without a project open, and is
-        // asynchronous, so the dialog's contents are waited for rather than assumed.
-        driver.invokeAction("ShowSettings", component = mainWindow.component)
+        // now = false is what makes this work rather than a preference. Executed immediately, the
+        // action system runs the action's update() on the spot and refuses it as disabled while
+        // the frame is not yet the active window -- which is normal for an IDE launched by a test
+        // harness. Queued instead, the check happens once the EDT has settled and the action runs.
+        // This is also how the Driver's own welcomeScreen/ideFrame helpers open Settings.
+        //
+        // It is fire-and-forget either way, so the dialog is waited for rather than assumed.
+        driver.invokeAction("ShowSettings", now = false)
         settingsCategories.shouldBe("Settings dialog should be open") { present() }
         // Clicks go to whatever is on top at that screen position, so make sure that is the
         // Settings dialog and not some other application that happens to be covering it.
