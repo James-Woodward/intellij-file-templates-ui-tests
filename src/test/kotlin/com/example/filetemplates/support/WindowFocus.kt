@@ -1,9 +1,11 @@
 package com.example.filetemplates.support
 
+import com.intellij.driver.client.Driver
 import com.intellij.driver.client.Remote
 import com.intellij.driver.model.OnDispatcher
 import com.intellij.driver.sdk.ui.components.UiComponent
 import com.intellij.driver.sdk.ui.remote.Component
+import com.intellij.driver.sdk.ui.requestFocusFromIde
 
 /**
  * Raising the IDE's window so that clicks reach it.
@@ -40,6 +42,23 @@ interface WindowRef {
  * needs. The flag is left set for the rest of the run -- the IDE is a throwaway instance that is
  * closed when the test ends.
  */
+/**
+ * Asks the IDE to make its own window the active one.
+ *
+ * Raising a window is not the same as activating it: z-order can be changed from a background
+ * process, but taking the foreground generally cannot, and an inactive window has no focus owner.
+ * That matters because IntelliJ resolves an action against the focused component and reports the
+ * action disabled when there is none -- which is why the context-menu action does nothing and a
+ * toolbar button's enabled state can go stale.
+ *
+ * This goes through the IDE's own activation path, which asks for the foreground explicitly rather
+ * than relying on `Window.toFront()` being honoured. It is best effort: the platform may still
+ * refuse, so callers must not assume focus was granted.
+ */
+fun Driver.activateIdeWindow() {
+    runCatching { requestFocusFromIde(null) }
+}
+
 fun UiComponent.raiseOwningWindow() {
     // getWindowAncestor returns the window *above* a component, so it is null when the component
     // already is the window -- as it is for the IDE frame itself. Fall back to the component.

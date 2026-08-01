@@ -84,11 +84,10 @@ class FileAndCodeTemplatesTest : IdeStarterTestBase() {
             page.bodyEditor.shouldBe("built-in template body should load") { text.isNotEmpty() }
             val originalBody = page.bodyEditor.text
 
-            // Any change works; the body only needs to differ from the original.
-            val editor = page.bodyEditor
-            editor.click()
-            editor.keyboard { typeText(editMarker) }
-            // Make the panel write the edit back, instead of relying on focus moving later.
+            // Any change works; the body only needs to differ from the original. Writing the
+            // document rather than typing keeps the edit off the keyboard, so it does not depend
+            // on which window has focus, and the panel is then told to write it back.
+            page.bodyEditor.text = originalBody + "\n" + editMarker
             page.commitEditorPanel(builtInTemplate)
             page.bodyEditor.shouldBe("editing should change the body") {
                 text != originalBody && text.contains(editMarker)
