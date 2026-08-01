@@ -8,6 +8,25 @@ Built on JetBrains' own integration stack: **IDE Starter** (downloads, configure
 real IDE) and the **Driver** (a Kotlin DSL for querying and clicking the live UI), with JUnit 5 as
 the runner.
 
+## Running it
+
+```
+./gradlew test
+```
+
+That is the whole thing. The build fetches its own Gradle, its own JDK 21 and the IDE under test,
+so nothing has to be installed or configured first — any recent JDK is enough to start it.
+
+The first run downloads an IntelliJ IDEA build (~1.5 GB) and takes a few minutes; later runs take
+about two. Four real IDE windows open and close, and the HTML report opens when it finishes.
+
+**While it runs, leave the mouse and keyboard alone.** These tests drive the real cursor, so
+competing input misdirects them. It does not matter what is on screen when the run starts — the
+suite brings the IDE window to the front itself.
+
+**On macOS, once:** grant the downloaded IDE Accessibility permission, or the operating system will
+silently discard everything the tests do — see [macOS](#macos) below.
+
 ## What the tests cover
 
 Three tests, ordered create → take effect → restore.
@@ -28,53 +47,34 @@ is read live from the IDE, not hard-coded, so it survives template changes betwe
 A fourth class, `IdeLaunchSmokeTest`, is not one of the three: it only launches the IDE and confirms
 the Welcome screen renders, separating "is the rig sound" from "is the feature working".
 
-## Requirements
+## What the machine needs
 
-- **JDK 21**, any distribution.
-- **A desktop session.** These are GUI tests: they open a visible IDE window and drive it with real
-  mouse and keyboard input, so the machine needs a real display (or a virtual one such as Xvfb on
-  CI). **Do not use the mouse or keyboard while a run is in progress** — the tests move the actual
-  cursor, so competing input will misdirect them. It does not matter what is on screen when the run
-  starts: the suite brings the IDE window to the front itself before clicking anything.
-- **~5–10 GB free disk.** IDE Starter downloads a full IDE build (~1.5 GB) on first run, cached
-  under `out/`.
-- Network access on the first run.
+A **desktop session** — these are GUI tests, so they need a real display, or a virtual one such as
+Xvfb on CI. Roughly **5–10 GB free**, and network access on the first run, for the IDE build cached
+under `out/`.
 
-Gradle is not required; the wrapper provides it. A JDK 21 is downloaded automatically if the
-machine does not already have one, so any recent JDK is enough to start the build.
+Everything else the build provides for itself. The suite also checks the display and free space
+before downloading anything, so a machine that cannot run GUI tests says so in seconds rather than
+failing as a UI timeout minutes later.
 
-### On macOS: grant Accessibility permission
+### macOS
 
-macOS only lets an application synthesise mouse and keyboard input once it has been granted
-Accessibility permission, and it refuses silently — events are dropped with no error. The IDE
-under test is downloaded into this project, so permission granted to an installed IntelliJ IDEA
-does not apply to it.
+macOS only allows an application to synthesise mouse and keyboard input once it has been granted
+Accessibility permission, and it refuses silently — the events are discarded with no error. This
+applies to any tool that drives a UI. The IDE under test is downloaded into this project, so
+permission held by an installed IntelliJ IDEA does not cover it.
 
-Run the suite once, then add the downloaded IDE under
-**System Settings → Privacy & Security → Accessibility** (use `+`, then `Cmd+Shift+G` to paste the
-path):
+Run the suite once, then add the downloaded IDE under **System Settings → Privacy & Security →
+Accessibility** (press `+`, then `Cmd+Shift+G` and paste):
 
 ```
 <project>/out/ide-tests/cache/builds/<build>/IntelliJ IDEA.app
 ```
 
-Without it the IDE opens and then nothing happens. The suite checks for this before its first
-click and fails with these instructions rather than reporting a missing component.
+Without it the IDE opens and nothing happens. Rather than let that surface as a component that
+never appeared, the suite checks before its first click and stops with these instructions.
 
-The suite checks the display and free disk space before downloading anything, so a machine that
-cannot run GUI tests fails in seconds with an explanation rather than as a UI timeout minutes in.
-
-## Running
-
-```
-./gradlew test
-```
-
-Runs the three tests plus the smoke test. A real IntelliJ window opens and closes for each; do not
-touch the mouse or keyboard. The HTML report at `build/reports/tests/test/index.html` opens
-automatically on local runs (skipped on CI).
-
-Single test:
+## Running a single test
 
 ```
 ./gradlew test --tests "com.example.filetemplates.FileAndCodeTemplatesTest.newFileFromTemplateUsesTemplateBody"
@@ -83,7 +83,7 @@ Single test:
 Results land in `build/reports/tests/test/` (HTML) and `build/test-results/test/` (JUnit XML). A
 captured passing run is committed under `results/`.
 
-### If a run fails
+## If a run fails
 
 GUI tests fail for environmental reasons as often as for real defects, so the suite is set up to
 say which it was.
