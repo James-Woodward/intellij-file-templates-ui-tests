@@ -1,4 +1,4 @@
-package com.example.filetemplates
+package com.example.filetemplates.support
 
 /**
  * The IDE build every test runs against, pinned in one place for reproducibility.

@@ -1,5 +1,6 @@
-package com.example.filetemplates
+package com.example.filetemplates.pages
 
+import com.example.filetemplates.support.raiseOwningWindow
 import com.intellij.driver.client.Driver
 import com.intellij.driver.sdk.invokeAction
 import com.intellij.driver.sdk.ui.components.common.JEditorUiComponent
@@ -17,9 +18,8 @@ import com.intellij.driver.sdk.ui.ui
  * repeating query expressions. All locators were read from UI Inspector dumps of the live Swing
  * tree, not guessed.
  *
- * Locators use `get()` rather than plain `val` on purpose: the Settings dialog is closed and
- * reopened during a test, so a component captured eagerly would go stale. A getter re-resolves
- * against the current UI on every access.
+ * Locators use `get()` rather than plain `val`: the Settings dialog is closed and reopened during a
+ * test, so a component captured eagerly would go stale. A getter re-resolves on every access.
  */
 class FileAndCodeTemplatesPage(private val driver: Driver) {
 
@@ -84,18 +84,56 @@ class FileAndCodeTemplatesPage(private val driver: Driver) {
         // dialog's contents are waited for rather than assumed.
         driver.invokeAction("ShowSettings")
         settingsCategories.shouldBe("Settings dialog should be open") { present() }
+        // Clicks go to whatever is on top at that screen position, so make sure that is the
+        // Settings dialog and not some other application that happens to be covering it.
+        settingsCategories.raiseOwningWindow()
         settingsCategories.clickPath("Editor", "File and Code Templates", fullMatch = true)
+        // Wait for a button that will actually be used: ActionToolbarImpl builds its buttons
+        // lazily, so the page can be present while the toolbar is still empty.
         createTemplateButton.shouldBe("File and Code Templates page should be shown") { present() }
     }
 
     /** Creates a template via the toolbar "+" and fills in its name, body and optional extension. */
     fun createTemplate(name: String, body: String, extension: String? = null) {
+        val templateCountBefore = templateList.items.size
+
         createTemplateButton.click()
+
+        // Wait for the new row and its panel rather than assuming they are ready: filling the name
+        // too early writes into the previously selected template's panel, and the new template is
+        // then left called "Unnamed".
+        templateList.shouldBe("a new template row should be added") {
+            items.size > templateCountBefore
+        }
         nameField.shouldBe("Name field should appear for a new template") { present() }
+
         nameField.text = name
         if (extension != null) extensionField.text = extension
         // setText avoids keyboard focus and auto-close-brace issues when typing ${...}.
         bodyEditor.text = body
+
+        commitEditorPanel(name)
+    }
+
+    /**
+     * Writes the editor panel's fields back to the template they belong to.
+     *
+     * Editing the fields alone changes nothing in the model: the panel commits when the selection
+     * changes, which is what happens when a user clicks a different template. Doing it explicitly
+     * matters because the alternative trigger is the field losing focus, and that depends on the
+     * IDE window being the active window -- which is not guaranteed on an unattended machine, in a
+     * VM, or over a remote session. Relying on it makes a new template silently persist as
+     * "Unnamed" and an edited body silently revert, on some machines and not others.
+     */
+    fun commitEditorPanel(templateName: String) {
+        val otherTemplate = templateList.items.firstOrNull { it != templateName }
+            ?: error("need a second template to switch to; list was ${templateList.items}")
+
+        selectTemplate(otherTemplate)
+        templateList.shouldBe("'$templateName' should be committed to the list") {
+            items.contains(templateName)
+        }
+        selectTemplate(templateName)
     }
 
     /** Selects a template in the list, which shows its body in the editor. */
@@ -104,6 +142,7 @@ class FileAndCodeTemplatesPage(private val driver: Driver) {
     /** Reverts a modified built-in template, confirming the "Reset Template" dialog it opens. */
     fun revertToOriginal() {
         revertToOriginalButton.click()
+        resetConfirmButton.shouldBe("Reset Template confirmation should open") { present() }
         resetConfirmButton.click()
     }
 

@@ -1,5 +1,10 @@
 package com.example.filetemplates
 
+import com.example.filetemplates.pages.FileAndCodeTemplatesPage
+import com.example.filetemplates.pages.NewFileFromTemplatePage
+import com.example.filetemplates.support.IDE_VERSION
+import com.example.filetemplates.support.IdeStarterTestBase
+import com.example.filetemplates.support.createSampleProject
 import com.intellij.driver.sdk.waitForIndicators
 import com.intellij.driver.sdk.waitForProjectOpen
 import com.intellij.driver.sdk.ui.shouldBe
@@ -83,6 +88,8 @@ class FileAndCodeTemplatesTest : IdeStarterTestBase() {
             val editor = page.bodyEditor
             editor.click()
             editor.keyboard { typeText(editMarker) }
+            // Make the panel write the edit back, instead of relying on focus moving later.
+            page.commitEditorPanel(builtInTemplate)
             page.bodyEditor.shouldBe("editing should change the body") {
                 text != originalBody && text.contains(editMarker)
             }

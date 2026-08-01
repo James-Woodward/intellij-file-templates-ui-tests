@@ -6,6 +6,8 @@ import com.intellij.ide.starter.driver.engine.runIdeWithDriver
 import com.intellij.ide.starter.ide.IdeProductProvider
 import com.intellij.ide.starter.models.TestCase
 import com.intellij.ide.starter.project.NoProject
+import com.example.filetemplates.support.IDE_VERSION
+import com.example.filetemplates.support.IdeStarterTestBase
 import com.intellij.ide.starter.runner.Starter
 import org.junit.jupiter.api.Test
 

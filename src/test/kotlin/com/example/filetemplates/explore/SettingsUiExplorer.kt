@@ -1,5 +1,6 @@
-package com.example.filetemplates
+package com.example.filetemplates.explore
 
+import com.example.filetemplates.support.IDE_VERSION
 import com.intellij.driver.sdk.ui.components.common.welcomeScreen
 import com.intellij.driver.sdk.ui.components.elements.accessibleTree
 import com.intellij.driver.sdk.ui.ui

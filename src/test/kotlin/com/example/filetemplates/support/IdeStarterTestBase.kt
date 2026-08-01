@@ -1,4 +1,4 @@
-package com.example.filetemplates
+package com.example.filetemplates.support
 
 import com.intellij.ide.starter.ci.CIServer
 import com.intellij.ide.starter.ci.NoCIServer
@@ -43,6 +43,10 @@ abstract class IdeStarterTestBase {
         private fun configureOnce() {
             if (configured) return
             configured = true
+
+            // Before anything is downloaded or launched, so a machine that cannot run GUI tests
+            // says so in seconds instead of failing later as a component that never appeared.
+            EnvironmentCheck.verify()
 
             di = DI {
                 extend(di)

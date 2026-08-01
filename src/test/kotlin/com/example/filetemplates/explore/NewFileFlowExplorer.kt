@@ -1,5 +1,8 @@
-package com.example.filetemplates
+package com.example.filetemplates.explore
 
+import com.example.filetemplates.pages.FileAndCodeTemplatesPage
+import com.example.filetemplates.support.IDE_VERSION
+import com.example.filetemplates.support.createSampleProject
 import com.intellij.driver.sdk.ui.components.common.ideFrame
 import com.intellij.driver.sdk.ui.components.common.toolwindows.projectView
 import com.intellij.driver.sdk.ui.components.elements.popupMenu

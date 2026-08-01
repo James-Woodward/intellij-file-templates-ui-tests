@@ -1,4 +1,4 @@
-package com.example.filetemplates
+package com.example.filetemplates.support
 
 import com.intellij.ide.starter.project.LocalProjectInfo
 import java.nio.file.Files

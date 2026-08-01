@@ -31,13 +31,19 @@ the Welcome screen renders, separating "is the rig sound" from "is the feature w
 ## Requirements
 
 - **JDK 21**, any distribution.
-- **A desktop session.** These are GUI tests: they open a visible IDE window and drive a real mouse
-  and keyboard, so the machine needs a display (or Xvfb on CI) and should be left alone during a run.
+- **A desktop session.** These are GUI tests: they open a visible IDE window and drive it with real
+  mouse and keyboard input, so the machine needs a real display (or a virtual one such as Xvfb on
+  CI). **Do not use the mouse or keyboard while a run is in progress** — the tests move the actual
+  cursor, so competing input will misdirect them. It does not matter what is on screen when the run
+  starts: the suite brings the IDE window to the front itself before clicking anything.
 - **~5–10 GB free disk.** IDE Starter downloads a full IDE build (~1.5 GB) on first run, cached
   under `out/`.
 - Network access on the first run.
 
 Gradle is not required; the wrapper provides it.
+
+The suite checks the display and free disk space before downloading anything, so a machine that
+cannot run GUI tests fails in seconds with an explanation rather than as a UI timeout minutes in.
 
 ## Running
 
@@ -57,6 +63,30 @@ Single test:
 
 Results land in `build/reports/tests/test/` (HTML) and `build/test-results/test/` (JUnit XML). A
 captured passing run is committed under `results/`.
+
+### If a run fails
+
+GUI tests fail for environmental reasons as often as for real defects, so the suite is set up to
+say which it was.
+
+- **The failure message names the check that timed out** (`Settings dialog should be open`, and so
+  on), rather than reporting a bare missing component.
+- **A screenshot of the moment of failure** is written to
+  `out/ide-tests/tests/<build>/<test-name>/log/screenshots/`, and the driver error prints its path.
+  This is usually enough on its own: it shows whether the IDE was even in front.
+- **The full Swing tree at the point of failure** is saved next to it under `log/ui-hierarchy/`.
+  Locators can be checked against it directly.
+- **The IDE's own log** for the run is in the same `log/` directory.
+
+Most common causes, in the order worth checking:
+
+| Symptom | Cause |
+|---|---|
+| Fails immediately with a message about a display or disk space | Preflight — the message says what to fix |
+| Components time out; screenshot shows another application in front | The session was used during the run — the cursor was moved or another window was clicked |
+| Everything times out on a CI agent | No virtual display: use `xvfb-run -a ./gradlew test` |
+| First run fails while fetching the IDE | No network access to the JetBrains download service |
+| `BUILD SUCCESSFUL` but nothing ran | Gradle considered `test` up to date; use `./gradlew cleanTest test` |
 
 ## Versions
 
@@ -93,6 +123,22 @@ editions, and the suite runs with no licence — the settings surface needs none
   and a captured component would go stale.
 - **Tests wait for state, never sleep.** Every step uses `shouldBe { … }`, which polls for the exact
   condition and fails after ~15s with a clear message — no flaky-or-slow `Thread.sleep`.
+- **Edits are committed explicitly, not by side effect.** The template panel writes its fields back
+  to the model when the list selection changes; typing alone changes nothing. The other trigger is
+  the field losing focus, which happens to occur when a click lands elsewhere — so a test can pass
+  by accident on a machine where the IDE window is active, and silently save a template called
+  "Unnamed" on one where it is not. `commitEditorPanel` performs the selection change deliberately,
+  which removes the dependency on window focus and on click timing.
+- **The environment is checked before the IDE is downloaded.** `EnvironmentCheck` verifies a usable
+  display and enough disk, and explains what to do when either is missing. It turns the most common
+  reason a GUI suite fails on someone else's machine into an immediate, readable error.
+- **The IDE window is raised before anything is clicked.** A click is delivered to whatever is on
+  top at that screen position, so a maximised window covering the IDE silently sends every click in
+  the run somewhere else, and the tests fail as components that "never appeared". `raiseOwningWindow`
+  lifts the IDE window first, from inside the IDE — a click cannot reveal a window that is not
+  visible to begin with. This was reproduced deliberately: with another application maximised, all
+  three tests failed at their first click; with the window raised, all three pass and run roughly
+  twice as fast, because clicks no longer retry until they time out.
 - **The payoff test checks an independent artifact.** `newFileFromTemplateUsesTemplateBody` reads the
   generated file off disk rather than the settings UI that produced it: a test that asserts against
   the surface it just wrote to can pass while proving nothing.
@@ -109,17 +155,25 @@ build.gradle.kts        Dependencies, pinned versions, the test task, report aut
 settings.gradle.kts
 gradle/                 Wrapper, pinned to Gradle 9.6.1 with a checksum
 src/test/kotlin/com/example/filetemplates/
-  FileAndCodeTemplatesTest.kt   The three deliverable tests
-  IdeLaunchSmokeTest.kt         Launch-and-close smoke test
-  IdeStarterTestBase.kt         Shared IDE Starter setup and failure policy
-  IdeVersion.kt                 The pinned IDE version, in one place
-  FileAndCodeTemplatesPage.kt   Page object: locators + actions for the settings page
-  NewFileFromTemplatePage.kt    Page object: the File | New flow
-  SampleProject.kt              Generates the throwaway project for test 2
-  SettingsUiExplorer.kt         Tooling: dumps the settings UI (tagged "explore")
-  NewFileFlowExplorer.kt        Tooling: dumps the File | New flow (tagged "explore")
-results/                        A committed run's HTML report and screenshots
+  FileAndCodeTemplatesTest.kt      The three deliverable tests
+  IdeLaunchSmokeTest.kt            Launch-and-close smoke test
+  pages/
+    FileAndCodeTemplatesPage.kt    Page object: locators + actions for the settings page
+    NewFileFromTemplatePage.kt     Page object: the File | New flow
+  support/
+    IdeStarterTestBase.kt          Shared IDE Starter setup and failure policy
+    IdeVersion.kt                  The pinned IDE version, in one place
+    SampleProject.kt               Generates the throwaway project for test 2
+    EnvironmentCheck.kt            Preflight: display and disk checks with actionable messages
+    WindowFocus.kt                 Raises the IDE window so clicks reach it
+  explore/
+    SettingsUiExplorer.kt          Tooling: dumps the settings UI (tagged "explore")
+    NewFileFlowExplorer.kt         Tooling: dumps the File | New flow (tagged "explore")
+results/                           A committed run's HTML report and screenshots
 ```
+
+Tests sit at the top of the package; everything they lean on is grouped by role beneath it —
+`pages` for the UI surface, `support` for the rig, `explore` for the capture tooling.
 
 The `*Explorer` classes are tooling, not tests: tagged `explore`, excluded from a normal run, and
 re-runnable with `-PincludeExplore` if the UI ever needs re-capturing.

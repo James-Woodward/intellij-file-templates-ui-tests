@@ -1,10 +1,12 @@
-package com.example.filetemplates
+package com.example.filetemplates.pages
 
+import com.example.filetemplates.support.raiseOwningWindow
 import com.intellij.driver.client.Driver
 import com.intellij.driver.sdk.ui.components.common.ideFrame
 import com.intellij.driver.sdk.ui.components.common.toolwindows.projectView
 import com.intellij.driver.sdk.ui.components.elements.dialog
 import com.intellij.driver.sdk.ui.components.elements.popupMenu
+import com.intellij.driver.sdk.ui.shouldBe
 import com.intellij.driver.sdk.ui.ui
 
 /**
@@ -15,16 +17,23 @@ import com.intellij.driver.sdk.ui.ui
  */
 class NewFileFromTemplatePage(private val driver: Driver) {
 
+    /** The Project view's file tree. A getter, so it re-resolves rather than going stale. */
+    private val projectTree
+        get() = driver.ideFrame().projectView().projectViewTree
+
     /**
      * Creates a file from [templateName] in the project root, naming it [fileName].
+     *
+     * The root row is selected before being right-clicked: doing both makes the context menu
+     * appear reliably. The row index is used rather than a name because the generated project's
+     * folder name varies per run.
      */
     fun createInProjectRoot(templateName: String, fileName: String) {
-        driver.ideFrame {
-            projectView {
-                projectViewTree.clickRow(0)
-                projectViewTree.rightClickRow(0)
-            }
-        }
+        projectTree.shouldBe("project view tree should be present") { present() }
+        // As in the Settings page: the frame has to be on top or the clicks land elsewhere.
+        projectTree.raiseOwningWindow()
+        projectTree.clickRow(0)
+        projectTree.rightClickRow(0)
 
         // Navigate the context menu path New -> <template>; the popup helper handles submenus.
         driver.ui.popupMenu().select("New", templateName)
