@@ -1,0 +1,12 @@
+# The Gradle wrapper script is executed by /bin/sh on macOS and Linux, so it must keep LF
+# endings. Committed from Windows without this, CRLF would make it fail with a "bad interpreter"
+# error on any Unix machine.
+gradlew     text eol=lf
+*.sh        text eol=lf
+
+# Batch files are only run by Windows, which wants CRLF.
+*.bat       text eol=crlf
+
+# Never apply end-of-line conversion to binary files.
+*.jar       binary
+*.png       binary
