@@ -38,6 +38,11 @@ import com.intellij.driver.sdk.ui.ui
  */
 class FileAndCodeTemplatesPage(private val driver: Driver) {
 
+    private companion object {
+        /** Title of the confirmation that reverting a built-in template opens. */
+        const val RESET_DIALOG_TITLE = "Reset Template"
+    }
+
     // ---------------------------------------------------------------- locators
 
     /**
@@ -185,13 +190,15 @@ class FileAndCodeTemplatesPage(private val driver: Driver) {
         val enabledBeforeClick = revertToOriginalButton.isActionEnabled()
 
         driver.withModalDialog(
+            expectedDialogTitle = RESET_DIALOG_TITLE,
             openModal = { revertToOriginalButton.performAction() },
             handleDialog = { second ->
-                // The confirmation's button is looked up by any of its plausible labels rather
-                // than one hard-coded string, so a reworded dialog fails with what it did show.
-                // "OK" is not among them: the Settings dialog underneath has one.
-                val confirm = runCatching { second.awaitButton("Reset", "Yes", "Revert") }
-                    .getOrElse { error("${it.message}; revert action enabled: $enabledBeforeClick") }
+                // Looked up by any of its plausible labels rather than one hard-coded string, and
+                // scoped to the confirmation, so a reworded dialog fails with what it did show
+                // instead of matching the Settings dialog's own OK.
+                val confirm = runCatching {
+                    second.awaitButton("Reset", "Yes", "Revert", inDialogTitled = RESET_DIALOG_TITLE)
+                }.getOrElse { error("${it.message}; revert action enabled: $enabledBeforeClick") }
                 confirm.press()
             },
         )
