@@ -7,8 +7,11 @@ import com.intellij.driver.model.OnDispatcher
 import com.intellij.driver.sdk.ui.accessibleName
 import com.intellij.driver.sdk.ui.components.UiComponent
 import com.intellij.driver.sdk.ui.components.elements.WindowUiComponent
+import com.intellij.driver.sdk.ui.remote.SwingHierarchyService
 import com.intellij.driver.sdk.ui.ui
 import com.intellij.ide.starter.ide.IDETestContext
+import java.nio.file.Files
+import java.nio.file.Path
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.concurrent.thread
 
@@ -188,6 +191,31 @@ private fun Driver.describeDialogs(): String =
         }
     }.getOrDefault("<could not read dialogs>")
 
+/**
+ * Writes the live Swing tree to `out/ui-dump/<name>.xml`, plus a one-line summary alongside it.
+ *
+ * A file, rather than a message on the failure, because the failures this is for are the ones that
+ * stop the run from finishing: a modal dialog that cannot be dismissed keeps the IDE alive, the
+ * test never returns, and nothing is reported. Whatever is on screen is recorded while it still
+ * can be, and a dialog missing from this dump is not a Swing component at all.
+ */
+fun Driver.dumpUiState(name: String) {
+    runCatching {
+        val outDir = Path.of("out", "ui-dump")
+        Files.createDirectories(outDir)
+
+        val dom = service(SwingHierarchyService::class).getSwingHierarchyAsDOM(null, false)
+        Files.writeString(outDir.resolve("$name.xml"), dom)
+
+        val summary = buildString {
+            appendLine("dialogs: ${describeDialogs()}")
+            appendLine("windows in tree: " + Regex("class=\"([A-Za-z]*(Dialog|Window|Frame)[A-Za-z]*)\"")
+                .findAll(dom).map { it.groupValues[1] }.distinct().joinToString(", "))
+        }
+        Files.writeString(outDir.resolve("$name-summary.txt"), summary)
+    }
+}
+
 /** The titles of the dialogs currently open, used as a baseline for [awaitNewDialogButton]. */
 fun Driver.dialogTitles(): Set<String> =
     runCatching {
@@ -261,6 +289,10 @@ fun Driver.withModalDialog(
         try {
             handleDialog(second)
         } catch (dialogFailure: Throwable) {
+            // Written before anything else, because what follows may not survive: a dialog that
+            // cannot be dismissed leaves the IDE unable to exit, the test never completes, and
+            // Gradle writes no report at all -- so the failure would otherwise leave no trace.
+            second.dumpUiState("modal-dialog-not-handled")
             // Close the dialogs before giving up: the opener is blocked inside one and the IDE
             // cannot shut down while it is on screen, so leaving it would replace this failure
             // with an unexplained hang at the end of the run.
