@@ -100,6 +100,12 @@ class FileAndCodeTemplatesTest : IdeStarterTestBase() {
             page.bodyEditor.shouldBe("edit should have persisted after reopening") { text.contains(editMarker) }
 
             page.revertToOriginal()
+
+            // Reverting drops the customisation and rebuilds the list, which resets the selection
+            // to its first entry -- so the editor is showing a different template until the one
+            // under test is selected again. Without this the comparison reads another template's
+            // body and fails for a reason that has nothing to do with reverting.
+            page.selectTemplate(builtInTemplate)
             page.bodyEditor.shouldBe("reverting should restore the original body") { text == originalBody }
 
             page.applyAndClose()

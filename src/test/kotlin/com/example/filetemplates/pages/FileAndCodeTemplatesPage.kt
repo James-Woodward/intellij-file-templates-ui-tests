@@ -1,7 +1,8 @@
 package com.example.filetemplates.pages
 
 import com.example.filetemplates.support.activateIdeWindow
-import com.example.filetemplates.support.awaitButton
+import com.example.filetemplates.support.awaitNewDialogButton
+import com.example.filetemplates.support.dialogTitles
 import com.example.filetemplates.support.isActionEnabled
 import com.example.filetemplates.support.press
 import com.example.filetemplates.support.raiseOwningWindow
@@ -10,6 +11,7 @@ import com.example.filetemplates.support.selectPathDirectly
 import com.example.filetemplates.support.withModalDialog
 import com.intellij.driver.client.Driver
 import com.intellij.driver.sdk.invokeAction
+import com.intellij.driver.sdk.ui.accessibleName
 import com.intellij.driver.sdk.ui.components.common.JEditorUiComponent
 import com.intellij.driver.sdk.ui.components.elements.ActionButtonUi
 import com.intellij.driver.sdk.ui.components.elements.JListUiComponent
@@ -37,11 +39,6 @@ import com.intellij.driver.sdk.ui.ui
  * and the second `press()`.
  */
 class FileAndCodeTemplatesPage(private val driver: Driver) {
-
-    private companion object {
-        /** Title of the confirmation that reverting a built-in template opens. */
-        const val RESET_DIALOG_TITLE = "Reset Template"
-    }
 
     // ---------------------------------------------------------------- locators
 
@@ -188,17 +185,15 @@ class FileAndCodeTemplatesPage(private val driver: Driver) {
         // Captured before the action runs: a disabled toolbar action ignores being activated
         // without complaining, and that is worth stating if the confirmation never appears.
         val enabledBeforeClick = revertToOriginalButton.isActionEnabled()
+        // Recorded before the confirmation opens, so it can be told apart from the Settings dialog
+        // it appears on top of by the only dependable difference: it was not there a moment ago.
+        val dialogsBefore = driver.dialogTitles()
 
         driver.withModalDialog(
-            expectedDialogTitle = RESET_DIALOG_TITLE,
             openModal = { revertToOriginalButton.performAction() },
             handleDialog = { second ->
-                // Looked up by any of its plausible labels rather than one hard-coded string, and
-                // scoped to the confirmation, so a reworded dialog fails with what it did show
-                // instead of matching the Settings dialog's own OK.
-                val confirm = runCatching {
-                    second.awaitButton("Reset", "Yes", "Revert", inDialogTitled = RESET_DIALOG_TITLE)
-                }.getOrElse { error("${it.message}; revert action enabled: $enabledBeforeClick") }
+                val confirm = runCatching { second.awaitNewDialogButton(dialogsBefore) }
+                    .getOrElse { error("${it.message}; revert action enabled: $enabledBeforeClick") }
                 confirm.press()
             },
         )

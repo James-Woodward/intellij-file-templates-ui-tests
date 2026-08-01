@@ -66,7 +66,6 @@ class NewFileFromTemplatePage(private val driver: Driver) {
 
         // Choosing the template opens a modal dialog, so it is driven over a second connection.
         driver.withModalDialog(
-            expectedDialogTitle = "New $templateName",
             openModal = { driver.ui.popupMenu().findMenuItemByText(templateName).press() },
             handleDialog = { second ->
                 second.ui.dialog({ byTitle("New $templateName") }) {

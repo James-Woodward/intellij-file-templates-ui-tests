@@ -102,31 +102,100 @@ interface DisposableWindowRef {
 }
 
 /**
- * Closes the dialog titled [title], if it is open.
+ * Closes every dialog that is open, whatever it is called.
  *
- * Used to recover from a failure while a modal dialog is up. Leaving one open is not a cosmetic
- * problem: the IDE cannot shut down with a modal dialog on screen, so the run stops responding at
- * the end rather than reporting the failure that caused it.
+ * Used to recover from a failure while a modal dialog is up, and deliberately indiscriminate: the
+ * IDE cannot shut down while a modal dialog is on screen, so one left behind replaces the failure
+ * that caused it with a run that stops responding. Identifying dialogs by title was not good
+ * enough -- a confirmation rendered as a native alert has no title to match on -- and by this
+ * point the test has failed anyway, so closing too much costs nothing.
  */
-private fun Driver.disposeDialog(title: String) {
+private fun Driver.disposeAllDialogs() {
     runCatching {
-        val dialog = ui.x("//div[@class='MyDialog' and @title='$title']", WindowUiComponent::class.java)
-        if (dialog.present()) {
-            val window = cast(dialog.component, DisposableWindowRef::class)
-            withContext(OnDispatcher.EDT) { window.dispose() }
+        ui.xx("//div[@class='MyDialog']").list().forEach { dialog ->
+            runCatching {
+                val window = cast(dialog.component, DisposableWindowRef::class)
+                withContext(OnDispatcher.EDT) { window.dispose() }
+            }
         }
     }
+}
+
+/**
+ * The buttons of every dialog on screen, as `dialog -> [button, ...]`.
+ *
+ * Reported when a dialog cannot be dealt with. Labels and titles vary between platforms and IDE
+ * versions far more than the structure does, so the useful thing to record on failure is what was
+ * actually there rather than a note that something expected was missing.
+ */
+private fun Driver.describeDialogs(): String =
+    runCatching {
+        ui.xx("//div[@class='MyDialog']").list().joinToString("; ") { dialog ->
+            val title = runCatching { dialog.accessibleName }.getOrNull() ?: "<untitled>"
+            val buttons = runCatching {
+                dialog.xx("//div[@class='JButton']").list()
+                    .mapNotNull { runCatching { it.accessibleName }.getOrNull() }
+            }.getOrDefault(emptyList())
+            "'$title' -> $buttons"
+        }
+    }.getOrDefault("<could not read dialogs>")
+
+/** The titles of the dialogs currently open, used as a baseline for [awaitNewDialogButton]. */
+fun Driver.dialogTitles(): Set<String> =
+    runCatching {
+        ui.xx("//div[@class='MyDialog']").list()
+            .mapNotNull { runCatching { it.accessibleName }.getOrNull() }
+            .toSet()
+    }.getOrDefault(emptySet())
+
+/**
+ * Waits for a dialog that was not already open, and returns the button that accepts it.
+ *
+ * Identified by having appeared, rather than by what it is called or what it contains. Titles and
+ * button labels vary between IDE versions and platforms -- the confirmation for reverting a
+ * template accepts on a button labelled "OK", not "Reset" -- and describing the dialog structurally
+ * proved worse than useless: a check meant to exclude the Settings dialog did not, so its own OK
+ * was pressed instead, quietly applying the change that was supposed to be discarded. What is
+ * dependable is that the dialog was not there a moment ago.
+ *
+ * The accepting button is chosen by exclusion, for the same reason: anything that is not a Cancel,
+ * No, Help or Close.
+ */
+fun Driver.awaitNewDialogButton(alreadyOpen: Set<String>, timeoutMs: Long = 15_000): UiComponent {
+    val dismissive = setOf("Cancel", "No", "Help", "Close")
+    val deadline = System.currentTimeMillis() + timeoutMs
+
+    while (System.currentTimeMillis() < deadline) {
+        val appeared = runCatching {
+            ui.xx("//div[@class='MyDialog']").list().firstOrNull { dialog ->
+                runCatching { dialog.accessibleName !in alreadyOpen }.getOrDefault(false)
+            }
+        }.getOrNull()
+
+        if (appeared != null) {
+            val accept = runCatching {
+                appeared.xx("//div[@class='JButton']").list().firstOrNull { button ->
+                    runCatching { button.accessibleName !in dismissive }.getOrDefault(false)
+                }
+            }.getOrNull()
+            if (accept != null) return accept
+        }
+        Thread.sleep(300)
+    }
+
+    error(
+        "no dialog beyond $alreadyOpen appeared within ${timeoutMs}ms; dialogs on screen: ${describeDialogs()}",
+    )
 }
 
 /**
  * Runs [openModal] -- an interaction that opens a modal dialog, and therefore blocks -- while
  * [handleDialog] drives that dialog over a separate connection.
  *
- * [expectedDialogTitle] names the dialog so it can be closed if [handleDialog] fails, which keeps a
- * failing test from leaving the IDE stuck behind a dialog nothing will dismiss.
+ * If [handleDialog] fails, every open dialog is closed before the failure is rethrown, so a test
+ * that could not deal with a dialog still reports why instead of leaving the IDE unable to exit.
  */
 fun Driver.withModalDialog(
-    expectedDialogTitle: String,
     openModal: () -> Unit,
     handleDialog: (Driver) -> Unit,
 ) {
@@ -144,10 +213,10 @@ fun Driver.withModalDialog(
         try {
             handleDialog(second)
         } catch (dialogFailure: Throwable) {
-            // Close the dialog before giving up: the opener is blocked inside it and the IDE
+            // Close the dialogs before giving up: the opener is blocked inside one and the IDE
             // cannot shut down while it is on screen, so leaving it would replace this failure
             // with an unexplained hang at the end of the run.
-            second.disposeDialog(expectedDialogTitle)
+            second.disposeAllDialogs()
 
             // When the opener is what failed, "the dialog never appeared" is only the symptom;
             // report the cause and keep the symptom attached to it.
