@@ -111,7 +111,8 @@ Most common causes, in the order worth checking:
 | Everything times out on a CI agent | No virtual display: use `xvfb-run -a ./gradlew test` |
 | First run fails while fetching the IDE | No network access to the JetBrains download service |
 | `ZipException: zip file is empty` during setup | A previous run was interrupted and left a half-extracted IDE. IDE Starter reuses that directory rather than re-extracting it, so delete `out/` and run again |
-| macOS: the IDE opens and nothing happens | Accessibility permission has not been granted to the downloaded IDE — see the macOS section under Requirements |
+| macOS: the IDE opens and nothing happens | Accessibility permission has not been granted to the terminal you are running from — see [macOS](#macos) |
+| `Proposed port 7777 is not available ... used by processes idea` | An IDE from an interrupted run is still alive and holding the port. The message names the process; end it and run again |
 | `BUILD SUCCESSFUL` but nothing ran | Gradle considered `test` up to date; use `./gradlew cleanTest test` |
 
 ## Versions
