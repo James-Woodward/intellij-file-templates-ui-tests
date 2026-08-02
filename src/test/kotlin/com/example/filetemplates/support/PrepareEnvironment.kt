@@ -49,6 +49,8 @@ class PrepareEnvironment {
                     appendLine("permission to whichever application started the run, not to the IDE")
                     appendLine("above, so it is granted once per machine and survives deleting out/.")
                     appendLine()
+                    appendLine("Opening that panel now.")
+                    appendLine()
                     appendLine("Then run:  ./gradlew test")
                 } else {
                     appendLine("Nothing further is needed on this platform.")
@@ -57,5 +59,31 @@ class PrepareEnvironment {
                 appendLine()
             },
         )
+
+        if (isMac) {
+            openAccessibilitySettings()
+        }
+    }
+
+    /**
+     * Opens the Accessibility panel, so the one thing macOS needs is one toggle away.
+     *
+     * macOS does not ask on its own here: posting synthetic input is refused silently, and the
+     * system only shows its permission dialog to an application that explicitly asks for trust.
+     * Printing a path through System Settings and leaving the reader to find it is the sort of
+     * instruction people skip, so this task opens the panel it is talking about.
+     *
+     * Best effort. Failing to open a settings window is not a reason to fail setup, and the
+     * instructions printed above stand on their own.
+     */
+    private fun openAccessibilitySettings() {
+        runCatching {
+            ProcessBuilder(
+                "open",
+                "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility",
+            ).start()
+        }.onFailure {
+            println("Could not open System Settings automatically (${it.message}); open it manually.")
+        }
     }
 }

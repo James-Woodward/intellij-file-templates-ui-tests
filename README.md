@@ -24,8 +24,9 @@ about two. Four real IDE windows open and close, and the HTML report opens when 
 competing input misdirects them. It does not matter what is on screen when the run starts — the
 suite brings the IDE window to the front itself.
 
-**On macOS, once per machine:** give your terminal application Accessibility permission, or the
-operating system silently discards everything the tests do — see [macOS](#macos) below.
+**On macOS, once per machine:** run `./gradlew prepare` first — it opens the right settings panel
+and says what to allow. Without that permission the operating system silently discards everything
+the tests do. See [macOS](#macos) below.
 
 ## What the tests cover
 
@@ -66,9 +67,13 @@ or an MDM profile.
 
 Grant it to **the application you run the tests from** — Terminal, iTerm, or the IDE whose terminal
 you use. macOS attributes the permission to the application responsible for the process, which is
-the one that started the run rather than the IDE it downloads and launches:
+the one that started the run rather than the IDE it downloads and launches.
 
-**System Settings → Privacy & Security → Accessibility** → switch that application on.
+```
+./gradlew prepare
+```
+
+opens **System Settings → Privacy & Security → Accessibility** and tells you what to switch on.
 
 It is granted once per machine, not per checkout, and survives deleting `out/`. Most machines used
 for development already have it.
