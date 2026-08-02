@@ -73,10 +73,16 @@ the one that started the run rather than the IDE it downloads and launches.
 ./gradlew prepare
 ```
 
-opens **System Settings → Privacy & Security → Accessibility** and tells you what to switch on.
+opens **System Settings → Privacy & Security → Accessibility** (**System Preferences → Security &
+Privacy → Privacy** on older macOS) and tells you what to allow.
 
-It is granted once per machine, not per checkout, and survives deleting `out/`. Most machines used
-for development already have it.
+Expect to add it by hand: an application appears in that list only once it has asked for the
+permission or been added manually, and these tests never ask — macOS refuses synthetic input
+silently rather than prompting. Press **`+`**, then `Cmd+Shift+G`, and enter the application's
+path; Terminal is at `/System/Applications/Utilities/Terminal.app`. Quit and reopen it afterwards,
+since it keeps the old answer while running.
+
+It is granted once per machine, not per checkout, and survives deleting `out/`.
 
 Without it the IDE opens and nothing happens. Rather than let that surface as a component that
 never appeared, the suite checks before its first click and stops with these instructions.
