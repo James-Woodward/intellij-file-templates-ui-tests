@@ -20,6 +20,12 @@ so nothing has to be installed or configured first — any recent JDK is enough 
 The first run downloads an IntelliJ IDEA build (~1.5 GB) and takes a few minutes; later runs take
 about two. Four real IDE windows open and close, and the HTML report opens when it finishes.
 
+One of the tests opens a small generated project, and the IDE indexes it before **File | New** will
+offer template actions. That test waits for indexing to finish rather than guessing at a delay, so
+it sits looking idle for a while — longer on a first run, and longer again on a machine where the
+JDK has not been indexed before. It is the slowest of the four by some margin, and that is expected
+rather than a sign it has stalled.
+
 **While it runs, leave the mouse and keyboard alone.** These tests drive the real cursor, so
 competing input misdirects them. It does not matter what is on screen when the run starts — the
 suite brings the IDE window to the front itself.

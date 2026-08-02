@@ -16,7 +16,10 @@ import com.intellij.ide.starter.runner.Starter
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestMethodOrder
 import java.nio.file.Files
 import kotlin.time.Duration.Companion.minutes
 
@@ -25,11 +28,18 @@ import kotlin.time.Duration.Companion.minutes
  *
  * Failure policy lives in [IdeStarterTestBase]; every locator lives in [FileAndCodeTemplatesPage]
  * and [NewFileFromTemplatePage], so these tests read as behaviour rather than clicks.
+ *
+ * Ordered create -> take effect -> restore. Each test launches its own IDE and shares nothing with
+ * the others, so the order changes no outcome; it is declared so that reading the report top to
+ * bottom follows the same progression as reading this file.
  */
+@Order(2)
+@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class FileAndCodeTemplatesTest : IdeStarterTestBase() {
 
     /** Test 1: a created template persists -- still listed with the same body after a reopen. */
     @Test
+    @Order(1)
     fun createdTemplateIsSavedAndListed() {
         Starter.newContext(
             "createdTemplateIsSavedAndListed",
@@ -70,6 +80,7 @@ class FileAndCodeTemplatesTest : IdeStarterTestBase() {
      * changes.
      */
     @Test
+    @Order(3)
     fun revertRestoresBuiltInTemplate() {
         Starter.newContext(
             "revertRestoresBuiltInTemplate",
@@ -112,6 +123,7 @@ class FileAndCodeTemplatesTest : IdeStarterTestBase() {
      * substituted by the file name.
      */
     @Test
+    @Order(2)
     fun newFileFromTemplateUsesTemplateBody() {
         val sample = createSampleProject()
         val templateName = "AutotestTxt"
