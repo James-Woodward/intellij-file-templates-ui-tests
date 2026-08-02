@@ -1,7 +1,6 @@
 package com.example.filetemplates.pages
 
 import com.example.filetemplates.support.raiseOwningWindow
-import com.example.filetemplates.support.verifyInputIsPermitted
 import com.intellij.driver.client.Driver
 import com.intellij.driver.sdk.invokeAction
 import com.intellij.driver.sdk.ui.components.common.JEditorUiComponent
@@ -111,9 +110,6 @@ class FileAndCodeTemplatesPage(private val driver: Driver) {
         // Clicks go to whatever is on top at that screen position, so make sure that is the
         // Settings dialog and not some other application that happens to be covering it.
         settingsCategories.raiseOwningWindow()
-        // Checked here, immediately before the first click of the run: if the platform is
-        // discarding synthetic input, say so now rather than reporting a missing component later.
-        settingsCategories.verifyInputIsPermitted()
         settingsCategories.clickPath("Editor", "File and Code Templates", fullMatch = true)
         // Wait for a button that will actually be used: ActionToolbarImpl builds its buttons
         // lazily, so the page can be present while the toolbar is still empty.

@@ -1,6 +1,9 @@
 package com.example.filetemplates.support
 
 import java.awt.GraphicsEnvironment
+import java.awt.MouseInfo
+import java.awt.Point
+import java.awt.Robot
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -28,9 +31,76 @@ object EnvironmentCheck {
 
     private const val BYTES_PER_GB = 1024L * 1024 * 1024
 
+    private val isMac: Boolean =
+        System.getProperty("os.name").orEmpty().startsWith("Mac", ignoreCase = true)
+
     fun verify() {
         verifyDisplay()
         verifyDiskSpace()
+        verifyInputIsPermitted()
+    }
+
+    /**
+     * Checks that this machine will let the tests move the pointer, before anything is downloaded.
+     *
+     * macOS refuses synthetic input unless the application responsible for the process has
+     * Accessibility permission, and it refuses in silence: no error, no prompt, the events are
+     * simply dropped. Left undetected that surfaces minutes later as an IDE sitting open doing
+     * nothing, which looks like a broken suite rather than a permission that was never granted.
+     *
+     * The check runs here, in the process Gradle started, because that is the same process macOS
+     * holds responsible for the IDE the tests later launch -- so a pointer that moves here will
+     * move there. Being first also means the answer arrives in seconds rather than after a 1.5 GB
+     * download.
+     */
+    private fun verifyInputIsPermitted() {
+        if (!isMac) return
+
+        val start = MouseInfo.getPointerInfo()?.location ?: return
+        // Somewhere the pointer demonstrably is not, so "unchanged" can only mean it was ignored.
+        val target = if (start.x > 300 || start.y > 300) Point(100, 100) else Point(500, 500)
+
+        val robot = Robot()
+        robot.mouseMove(target.x, target.y)
+        Thread.sleep(200)
+        val moved = MouseInfo.getPointerInfo()?.location
+        robot.mouseMove(start.x, start.y)
+
+        if (moved != null && (moved.x != start.x || moved.y != start.y)) return
+
+        openAccessibilitySettings()
+        error(
+            """
+            macOS is discarding the input these tests depend on, so nothing they click would happen.
+
+            Allow the application you started this run from -- Terminal, iTerm, or the IDE whose
+            terminal you used. macOS attributes the permission to whichever application is
+            responsible for the process, not to the IDE these tests launch.
+
+              System Settings > Privacy & Security > Accessibility
+              (System Preferences > Security & Privacy > Privacy on older macOS)
+
+            Expect to add it yourself: an application only appears in that list once it has asked
+            for the permission or been added by hand, and these tests never ask -- macOS refuses
+            silently rather than prompting. Press '+', then Cmd+Shift+G, and enter its path;
+            Terminal is at /System/Applications/Utilities/Terminal.app
+
+            Then quit and reopen the terminal -- it keeps the old answer while it is running -- and
+            run the tests again. The permission is granted once per machine.
+
+            That panel has been opened for you.
+            """.trimIndent(),
+        )
+    }
+
+    /** Best effort: failing to open a settings window is no reason to fail the check itself. */
+    fun openAccessibilitySettings() {
+        runCatching {
+            ProcessBuilder(
+                "open",
+                "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility",
+            ).start()
+        }
     }
 
     private fun verifyDisplay() {

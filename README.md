@@ -24,9 +24,9 @@ about two. Four real IDE windows open and close, and the HTML report opens when 
 competing input misdirects them. It does not matter what is on screen when the run starts — the
 suite brings the IDE window to the front itself.
 
-**On macOS, once per machine:** run `./gradlew prepare` first — it opens the right settings panel
-and says what to allow. Without that permission the operating system silently discards everything
-the tests do. See [macOS](#macos) below.
+**On macOS, once per machine:** the run stops in the first few seconds, before downloading
+anything, and opens the settings panel where you allow it to control the pointer — macOS discards
+that input silently otherwise. Allow it, run again, done. See [macOS](#macos) below.
 
 ## What the tests cover
 
@@ -69,12 +69,10 @@ Grant it to **the application you run the tests from** — Terminal, iTerm, or t
 you use. macOS attributes the permission to the application responsible for the process, which is
 the one that started the run rather than the IDE it downloads and launches.
 
-```
-./gradlew prepare
-```
-
-opens **System Settings → Privacy & Security → Accessibility** (**System Preferences → Security &
-Privacy → Privacy** on older macOS) and tells you what to allow.
+Nothing has to be done in advance. `./gradlew test` checks this first — before the IDE is
+downloaded — and if the permission is missing it stops within seconds, opens **System Settings →
+Privacy & Security → Accessibility** (**System Preferences → Security & Privacy → Privacy** on
+older macOS), and says what to allow.
 
 Expect to add it by hand: an application appears in that list only once it has asked for the
 permission or been added manually, and these tests never ask — macOS refuses synthetic input
