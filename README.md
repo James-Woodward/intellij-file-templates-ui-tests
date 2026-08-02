@@ -17,22 +17,22 @@ the runner.
 That is the whole thing. The build fetches its own Gradle, its own JDK 21 and the IDE under test,
 so nothing has to be installed or configured first — any recent JDK is enough to start it.
 
+On macOS there is one thing to allow first, once per machine — [see below](#macos). Linux and
+Windows need nothing.
+
 The first run downloads an IntelliJ IDEA build (~1.5 GB) and takes a few minutes; later runs take
-about two. Four real IDE windows open and close, and the HTML report opens when it finishes.
+about two. Four real IDE windows open and close in turn, and the HTML report opens at the end.
 
-One of the tests opens a small generated project, and the IDE indexes it before **File | New** will
-offer template actions. That test waits for indexing to finish rather than guessing at a delay, so
-it sits looking idle for a while — longer on a first run, and longer again on a machine where the
-JDK has not been indexed before. It is the slowest of the four by some margin, and that is expected
-rather than a sign it has stalled.
+**While it runs, leave the mouse and keyboard alone.** The tests drive the real cursor, so competing
+input misdirects them. It does not matter what is on screen when the run starts — the suite brings
+the IDE window to the front itself.
 
-**While it runs, leave the mouse and keyboard alone.** These tests drive the real cursor, so
-competing input misdirects them. It does not matter what is on screen when the run starts — the
-suite brings the IDE window to the front itself.
-
-**On macOS, once per machine:** the run stops in the first few seconds, before downloading
-anything, and opens the settings panel where you allow it to control the pointer — macOS discards
-that input silently otherwise. Allow it, run again, done. See [macOS](#macos) below.
+**The third test pauses for a while, and that is expected.**
+`newFileFromTemplateUsesTemplateBody` is the only test that opens a project, and the IDE indexes it
+before **File | New** will offer any template actions. The test waits for indexing to finish rather
+than guessing at a delay, so the IDE sits there looking idle — around half a minute, longer on a
+first run or on a machine where the JDK has not been indexed before. It is by some margin the
+slowest of the four. It has not stalled.
 
 ## What the tests cover
 
@@ -66,30 +66,32 @@ failing as a UI timeout minutes later.
 
 ### macOS
 
-macOS only allows an application to synthesise mouse and keyboard input once it has been granted
-Accessibility permission, and it refuses silently — the events are discarded with no error. This
-applies to any tool that drives a UI, and no script can grant it: only the user in System Settings,
-or an MDM profile.
+macOS will not let an application move the mouse or press keys until you allow it, and it refuses
+**silently** — the events are simply discarded. Every tool that drives a UI needs this, and no
+script can grant it: only you, in System Settings.
 
-Grant it to **the application you run the tests from** — Terminal, iTerm, or the IDE whose terminal
-you use. macOS attributes the permission to the application responsible for the process, which is
-the one that started the run rather than the IDE it downloads and launches.
+Nothing to do in advance. Run the tests; if the permission is missing they stop within a few
+seconds — before downloading anything — and open the right settings panel.
 
-Nothing has to be done in advance. `./gradlew test` checks this first — before the IDE is
-downloaded — and if the permission is missing it stops within seconds, opens **System Settings →
-Privacy & Security → Accessibility** (**System Preferences → Security & Privacy → Privacy** on
-older macOS), and says what to allow.
+1. **`./gradlew test`** — it stops and opens **System Settings → Privacy & Security →
+   Accessibility**. On macOS 12 and earlier this is **System Preferences → Security & Privacy →
+   Privacy → Accessibility**, and you will need to click the padlock first.
+2. **Add the application you ran the tests from** — Terminal, iTerm, or the IDE whose terminal you
+   used. Expect it to be missing from the list rather than merely switched off: an application only
+   appears there once it has asked for the permission or been added by hand, and these tests never
+   ask, because macOS refuses them silently instead of prompting.
+   Press **`+`**, then `Cmd+Shift+G`, and enter its path — Terminal is at
+   `/System/Applications/Utilities/Terminal.app`.
+3. **Tick it**, then **quit that application and reopen it**. It keeps the old answer for as long as
+   it is running.
+4. **`./gradlew test`** again. It runs.
 
-Expect to add it by hand: an application appears in that list only once it has asked for the
-permission or been added manually, and these tests never ask — macOS refuses synthetic input
-silently rather than prompting. Press **`+`**, then `Cmd+Shift+G`, and enter the application's
-path; Terminal is at `/System/Applications/Utilities/Terminal.app`. Quit and reopen it afterwards,
-since it keeps the old answer while running.
+Granted once per machine, not per checkout. It survives deleting `out/`, and most machines used for
+development already have it.
 
-It is granted once per machine, not per checkout, and survives deleting `out/`.
-
-Without it the IDE opens and nothing happens. Rather than let that surface as a component that
-never appeared, the suite checks before its first click and stops with these instructions.
+Why the terminal and not the IDE: macOS attributes the permission to the application responsible
+for the process, which is the one that started the run — not the IDE that Gradle downloads and
+launches underneath it.
 
 Linux and Windows need none of this: neither gates synthetic input, so `./gradlew test` is the whole
 procedure. On CI, Linux under Xvfb needs no setup at all.
