@@ -70,15 +70,12 @@ val openTestReport = tasks.register("openTestReport") {
     }
 }
 
-// Downloads the IDE and reports whatever the machine still needs, without running a test.
-//
-// It exists for macOS, where permission to control the mouse and keyboard is granted per
-// application and so cannot be granted until the IDE has been downloaded. Without this the first
-// run has to fail before it can be fixed, which reads like a broken project rather than the
-// operating system asking for consent.
+// Optional convenience: checks the machine and downloads the IDE without running a test, so the
+// ~1.5 GB fetch and the environment checks happen separately from the run. `test` does all of this
+// on its own; this only makes it explicit, and states up front the one thing macOS asks for.
 val prepare = tasks.register<Test>("prepare") {
     group = "build setup"
-    description = "Downloads the IDE and prints anything else this machine needs."
+    description = "Optional: downloads the IDE and reports anything this machine needs."
     testClassesDirs = sourceSets.test.get().output.classesDirs
     classpath = sourceSets.test.get().runtimeClasspath
     useJUnitPlatform { includeTags("prepare") }

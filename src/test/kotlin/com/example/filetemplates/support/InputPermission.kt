@@ -9,8 +9,9 @@ import java.awt.Point
  *
  * The Driver works by synthesising mouse and keyboard events inside the IDE. macOS only allows an
  * application to do that once it has been granted Accessibility permission, and it refuses without
- * any error: the events are simply dropped. The IDE that IDE Starter downloads is a fresh copy that
- * macOS has never seen, so it does not have that permission by default.
+ * any error: the events are simply dropped. The permission is attributed to the application
+ * responsible for the process -- the terminal the run was started from, not the IDE it launches --
+ * so it is granted once per machine rather than per checkout.
  *
  * The symptom is uninformative -- the IDE is visibly open and doing nothing, and the test fails
  * fifteen seconds later reporting a component that never appeared, which looks like a broken
@@ -61,15 +62,15 @@ fun UiComponent.verifyInputIsPermitted() {
         granted Accessibility permission, and it is refused silently -- the events are dropped with
         no error, which is why this would otherwise surface as a component that never appears.
 
-        The IDE under test is a copy downloaded into this project, so granting the permission to an
-        installed IntelliJ IDEA does not cover it. Grant it to this one:
+        Grant it to the application these tests were started from -- Terminal, iTerm, or the IDE
+        whose terminal you used. macOS attributes the permission to the application responsible for
+        the process, which is the one that launched the run, not the IDE it downloads and starts.
 
-          System Settings > Privacy & Security > Accessibility > "+"
-          then Cmd+Shift+G and paste:
-          <project>/out/ide-tests/cache/builds/<build>/IntelliJ IDEA.app
+          System Settings > Privacy & Security > Accessibility
 
-        Make sure the switch next to it is on, then run the tests again. Deleting out/ discards
-        that IDE copy, and the permission has to be granted again for the replacement.
+        Switch that application on, then run the tests again. The permission belongs to it rather
+        than to anything in this project, so it survives deleting out/ and is granted once per
+        machine.
         """.trimIndent()
     }
 

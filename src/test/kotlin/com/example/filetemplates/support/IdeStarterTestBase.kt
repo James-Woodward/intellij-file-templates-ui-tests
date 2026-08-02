@@ -33,6 +33,11 @@ abstract class IdeStarterTestBase {
             // save. Only appears in the project-based test.
             "JVMDTraceProfilerConfiguration",
             "ProfilerRunConfigurationsManager",
+            // Full Line Completion cannot serialize its own settings when the project is saved,
+            // which fails the project-based test intermittently. Same shape as the profiler bug:
+            // a bundled plugin's own state, nothing to do with file templates.
+            "MLServerCompletionSettings",
+            "org.jetbrains.completion.full.line",
         )
 
         // di is process-global; bind it exactly once.
